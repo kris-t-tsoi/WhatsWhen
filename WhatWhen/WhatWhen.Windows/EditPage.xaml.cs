@@ -39,7 +39,7 @@ namespace WhatWhen
 
         private void addCategory_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(NewCatagory));
         }
 
         private void ok_Click(object sender, RoutedEventArgs e)

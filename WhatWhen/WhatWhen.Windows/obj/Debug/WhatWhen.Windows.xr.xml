@@ -41,11 +41,17 @@
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="FontSize" />
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="RenderTransformOrigin" />
       <RootEvent Name="TextChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
@@ -102,5 +108,6 @@
       <RootProperty Name="Children" />
     </RootType>
     <RootType FullName="WhatWhen.MainPage" />
+    <RootType FullName="WhatWhen.NewCatagory" />
   </Roots.RootTypes>
 </Roots>

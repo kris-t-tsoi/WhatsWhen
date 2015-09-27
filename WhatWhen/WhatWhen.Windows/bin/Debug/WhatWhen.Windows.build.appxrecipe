@@ -52,6 +52,9 @@
     <AppxPackagedFile Include="c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\NewCatagory.xbf">
+      <PackagePath>NewCatagory.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>

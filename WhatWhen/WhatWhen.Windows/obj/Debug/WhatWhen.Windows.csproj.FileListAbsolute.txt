@@ -40,3 +40,8 @@ c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen
 c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\obj\Debug\EditPage.xbf
 c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\AddPage.xbf
 c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\EditPage.xbf
+c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\NewCatagory.xbf
+c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\obj\Debug\NewCatagory.g.i.cs
+c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\obj\Debug\NewCatagory.g.cs
+c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\obj\Debug\NewCatagory.xaml
+c:\users\kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\obj\Debug\NewCatagory.xbf

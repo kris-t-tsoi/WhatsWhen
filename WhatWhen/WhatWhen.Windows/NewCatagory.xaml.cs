@@ -20,41 +20,26 @@ namespace WhatWhen
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddPage : Page
+    public sealed partial class NewCatagory : Page
     {
-        public AddPage()
+        public NewCatagory()
         {
             this.InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void newCatName_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void addCategory_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NewCatagory));
-        }
-
-        private void cancel_Click(object sender, RoutedEventArgs e)
+        private void cancelbutton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        private void ok_Click(object sender, RoutedEventArgs e)
+        private void okbutton_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }
