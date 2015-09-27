@@ -39,7 +39,23 @@ namespace WhatWhen
 
         private void okbutton_Click(object sender, RoutedEventArgs e)
         {
+            //get textbox data, check name is unique
+            if (checkUnique(newCatName.Text) == true)
+            {
+                Catagory newCat = new Catagory() { catName = newCatName.Text, isDeleted = false };
+               // newCat.catagoryCreate();
 
+                //return to main menu
+                this.Frame.Navigate(typeof(MainPage));
+            }
+
+           
+        }
+
+        Boolean checkUnique (String name)
+        {
+            //return true if name is unique
+            return true;
         }
     }
 }

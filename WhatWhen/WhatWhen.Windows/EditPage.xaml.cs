@@ -56,5 +56,15 @@ namespace WhatWhen
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
+        private void Time_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
+        {
+
+        }
+
+        private void Date_DateChanged(object sender, DatePickerValueChangedEventArgs e)
+        {
+
+        }
     }
 }

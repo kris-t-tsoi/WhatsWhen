@@ -28,11 +28,14 @@ namespace WhatWhen
         //get Root folder
         public static string root =  Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
         public static string path = root + @"\WhatData";
+        static List<Catagory> catList = new List<Catagory>();
+        Catagory useCatMethods = new Catagory();
 
         public MainPage()
         {
             this.InitializeComponent();
             checkFilesExist();
+            useCatMethods.getCatagories(catList);
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
@@ -47,42 +50,31 @@ namespace WhatWhen
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         async void checkFilesExist()
         {
-            StorageFolder localFolder =
-               await StorageFolder.GetFolderFromPathAsync(root);
-
             //check if Data Folder exists("WhatData"), else create
+            StorageFolder localFolder =
+            await StorageFolder.GetFolderFromPathAsync(root);
             if (await localFolder.TryGetItemAsync("WhatData") == null)
             {
                 await localFolder.CreateFolderAsync("WhatData");
             }
 
-
-            StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(path);
-
-
             //check if there is a catagory file,else create
+            StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(path);
             if (await storeFolder.TryGetItemAsync("catagory.txt") == null)
             {
                 StorageFile catagoryFile = await storeFolder.CreateFileAsync("catagory.txt");
-
                 Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
 
                 //catagory file add in a All
-                Catagory all = new Catagory(true) { catName = "ALL", isDeleted = false };
-                using (StreamWriter writer = new StreamWriter(fileStream))
-                {
-                    writer.WriteLine(all.catName + "\t" + all.isDeleted);
-                }
+                Catagory all = new Catagory() { catName = "ALL", isDeleted = false };
+                
             }
         }
-
-
-
     }
 }
 

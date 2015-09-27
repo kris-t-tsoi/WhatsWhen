@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WhatWhen;
 using Windows.Storage;
 
 namespace WhatWhen
@@ -12,13 +9,13 @@ namespace WhatWhen
     class Catagory
     {
         internal string catName;
-        internal bool isDeleted;
+        internal Boolean isDeleted;
+        internal List<Activity> activityItems = new List<Activity>();
 
-        internal Catagory(bool isNew)
+              
+         public void catagoryCreate (List<Catagory> list)
         {
-
-            if (isNew == true)
-            {
+            
                 //wait until catagory name is set
                 while (catName == null) { }
                 //if catagory is not ALL then create individual file
@@ -27,29 +24,39 @@ namespace WhatWhen
                     createFile(catName);
                 }
 
-                //add to catagory file
-                addCatagoryTextFile();
+            //add to catagory list then update catagory file
+            list.Add(this);
+            updateCatagoryText(list);               
 
-            }
+            }          
+        
 
-        }
-
-        async void addCatagoryTextFile()
-        {
+         async void updateCatagoryText(List<Catagory> list)
+        {            
             //get catagory.txt path
-            string catFile = MainPage.path + @"\catagory.txt";
-            StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(catFile+".txt");
-
-            //start a file stream
+            StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
+            
+            //start a file stream for writing
             Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
 
-            //catagory file add in a All           
+            //rewrite all and add catagory into catagory.txt          
             using (StreamWriter writer = new StreamWriter(fileStream))
-            {
-                writer.WriteLine(catName + "\t" + isDeleted);
-            }
+            {   
+            foreach(Catagory line in list)
+                {   //if the user has deleted the catagory, do not save in file
+                    if(line.isDeleted == false)
+                    {
+                        writer.WriteLine(line.catName);
+                    }
+                    else
+                    {
+                        //remove the deleted catagory's file
+                        deleteFile(line.catName);
+                    }
+                }
+                }
         }
-        async void createFile(string newFileName)
+         async void createFile(string newFileName)
         {
             
             StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(MainPage.path);
@@ -60,9 +67,64 @@ namespace WhatWhen
                 StorageFile catagoryFile = await storeFolder.CreateFileAsync(newFileName);
 
             }
+            }
 
+        public async void getCatagories(List<Catagory> list)
+        {
+            //get catagory.txt path
+            StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
+
+            //start a file stream for reading
+            Stream fileStream = await catagoryFile.OpenStreamForReadAsync();
+
+            //rewrite all and add catagory into catagory.txt          
+            using (StreamReader read = new StreamReader(fileStream))
+            {
+                string line;
+                while ((line = read.ReadLine())!= null)
+                {
+                    //read line, and store data in list
+                  Catagory filedata = new Catagory() { catName = line, isDeleted =false };
+                    list.Add(filedata);
+                    //read line
+                    read.ReadLine();
+                }   
+                  
+            }
         }
 
+        async void deleteFile(String filename)
+        {
+            StorageFile deleteFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\" + filename);
+            await deleteFile.DeleteAsync();
+        }
+
+
+        public async void getActivitiesInCatagory()
+        {
+          
+            //get text path
+            StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
+
+            //start a file stream for reading
+            Stream fileStream = await actFile.OpenStreamForReadAsync();
+
+            //rewrite all and add catagory into catagory.txt          
+            using (StreamReader read = new StreamReader(fileStream))
+            {
+                string line;
+                while ((line = read.ReadLine()) != null)
+                {
+                    //split line, and store data in list
+                    String[] info = line.Split('\t');
+                    Activity filedata = new Activity() { };
+                    activityItems.Add(filedata);
+                    //read line
+                    read.ReadLine();
+                }
+
+            }
+        }
 
 
     }
