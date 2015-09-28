@@ -17,20 +17,28 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TextBlock x:Name="title" Margin="99,25,253,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="What's When"  Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
+                <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" Text="What's When"  Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
             </Grid>
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
-                    <Button x:ConnectionId='1' x:Name="add" Content="Add" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                  />
-                    <Button x:ConnectionId='2' x:Name="edit" Content="Edit" Grid.Column="2" Height="57"  Width="150"                   />
-                    <Button x:ConnectionId='3' x:Name="delete" Content="Delete" Grid.Column="2" Height="57"  Width="150"                     />
+                    <Button x:ConnectionId='4' x:Name="addCat" Content="Add Category" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                     />
+                    <Button x:ConnectionId='5' x:Name="deleteCat" Content="Delete Category" Grid.Column="2" Height="57"  Width="150"                        />
                 </StackPanel>
             </Grid>
 
+            <Grid Grid.Column="2">
+                <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
+                    <Button x:ConnectionId='1' x:Name="addAct" Content="Add To Do" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                     />
+                    <Button x:ConnectionId='2' x:Name="editAct" Content="Edit To Do" Grid.Column="2" Height="57"  Width="150"                      />
+                    <Button x:ConnectionId='3' x:Name="deleteAct" Content="Delete To Do" Grid.Column="2" Height="57"  Width="150"                        />
+                </StackPanel>
+            </Grid>
+            
         </Grid>
 
 

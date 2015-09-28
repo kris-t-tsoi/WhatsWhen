@@ -17,20 +17,28 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TextBlock x:Name="title" Margin="99,25,253,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="What's When"  Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
+                <TextBlock x:Name="title" HorizontalAlignment="Center" VerticalAlignment="Center" Text="What's When"  Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
             </Grid>
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
-                    <Button x:Name="add" Content="Add" Grid.Column="2" Grid.Row="0" Height="57"  Width="150" Click="add_Click"/>
-                    <Button x:Name="edit" Content="Edit" Grid.Column="2" Height="57"  Width="150" Click="edit_Click"/>
-                    <Button x:Name="delete" Content="Delete" Grid.Column="2" Height="57"  Width="150" Click="delete_Click"/>
+                    <Button x:Name="addCat" Content="Add Category" Grid.Column="2" Grid.Row="0" Height="57"  Width="150" Click="addCat_Click"/>
+                    <Button x:Name="deleteCat" Content="Delete Category" Grid.Column="2" Height="57"  Width="150" Click="deleteCat_Click"/>
                 </StackPanel>
             </Grid>
 
+            <Grid Grid.Column="2">
+                <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
+                    <Button x:Name="addAct" Content="Add To Do" Grid.Column="2" Grid.Row="0" Height="57"  Width="150" Click="addAct_Click"/>
+                    <Button x:Name="editAct" Content="Edit To Do" Grid.Column="2" Height="57"  Width="150" Click="editAct_Click"/>
+                    <Button x:Name="deleteAct" Content="Delete To Do" Grid.Column="2" Height="57"  Width="150" Click="deleteAct_Click"/>
+                </StackPanel>
+            </Grid>
+            
         </Grid>
 
 

@@ -22,61 +22,61 @@
     <AppXManifest Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-09-28T06:29:15.509</Modified>
+      <Modified>2015-09-28T09:21:07.735</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.exe">
       <PackagePath>WhatWhen.Windows.exe</PackagePath>
-      <Modified>2015-09-28T06:31:07.744</Modified>
+      <Modified>2015-09-28T09:29:26.667</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-06T10:01:10.000</Modified>
+      <Modified>2015-09-28T09:09:53.559</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\SmallLogo.scale-100.png">
       <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-06T10:01:10.000</Modified>
+      <Modified>2015-09-28T09:09:53.559</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-06T10:01:10.000</Modified>
+      <Modified>2015-09-28T09:09:53.559</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-06T10:01:10.000</Modified>
+      <Modified>2015-09-28T09:09:53.559</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.xr.xml">
       <PackagePath>WhatWhen.Windows.xr.xml</PackagePath>
-      <Modified>2015-09-27T23:02:07.518</Modified>
+      <Modified>2015-09-28T09:09:53.653</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-09-27T06:09:25.625</Modified>
+      <Modified>2015-09-28T09:21:06.295</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\AddPage.xbf">
       <PackagePath>AddPage.xbf</PackagePath>
-      <Modified>2015-09-27T23:02:07.643</Modified>
+      <Modified>2015-09-28T09:21:06.295</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\EditPage.xbf">
       <PackagePath>EditPage.xbf</PackagePath>
-      <Modified>2015-09-27T23:02:07.643</Modified>
+      <Modified>2015-09-28T09:21:06.295</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-09-27T11:12:05.318</Modified>
+      <Modified>2015-09-28T09:29:26.418</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\NewCatagory.xbf">
       <PackagePath>NewCatagory.xbf</PackagePath>
-      <Modified>2015-09-27T11:12:40.211</Modified>
+      <Modified>2015-09-28T09:21:06.295</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-09-28T06:29:15.368</Modified>
+      <Modified>2015-09-28T09:21:07.100</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

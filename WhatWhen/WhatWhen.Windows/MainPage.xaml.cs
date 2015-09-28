@@ -45,21 +45,7 @@ namespace WhatWhen
         {
             throw new NotImplementedException();
         }
-
-        private void add_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AddPage));
-        }
-
-        private void edit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(EditPage));
-        }
-
-        private void delete_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+           
 
         async void checkFilesExist()
         {
@@ -82,6 +68,31 @@ namespace WhatWhen
                 Catagory all = new Catagory() { catName = "ALL", isDeleted = false };
                 
             }
+        }
+
+        private void addCat_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteCat_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addAct_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AddPage));
+        }
+
+        private void editAct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteAct_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

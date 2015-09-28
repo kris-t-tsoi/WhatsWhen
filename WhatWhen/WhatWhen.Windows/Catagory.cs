@@ -18,11 +18,9 @@ namespace WhatWhen
             
                 //wait until catagory name is set
                 while (catName == null) { }
-                //if catagory is not ALL then create individual file
-                if (!catName.Equals("ALL"))
-                {
-                    createFile(catName);
-                }
+
+                //create individual file
+                  createFile(catName);
 
             //add to catagory list then update catagory file
             list.Add(this);
@@ -62,7 +60,7 @@ namespace WhatWhen
             StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(MainPage.path);
 
             //create own file
-            if (await storeFolder.TryGetItemAsync("catagory.txt") == null)
+            if (await storeFolder.TryGetItemAsync(newFileName) == null)
             {
                 StorageFile catagoryFile = await storeFolder.CreateFileAsync(newFileName);
 
