@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,28 +36,51 @@ namespace WhatWhen
 
         private void cancelbutton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            //go back to previous page
+            this.Frame.GoBack();
+
         }
 
         private void okbutton_Click(object sender, RoutedEventArgs e)
         {
+            Catagory newCat = new Catagory() { catName = newCatName.Text, isDeleted = false };
             //get textbox data, check name is unique
-            if (checkUnique(newCatName.Text) == true)
+            if (checkUnique(newCat) == true)
             {
-                Catagory newCat = new Catagory() { catName = newCatName.Text, isDeleted = false };
-               // newCat.catagoryCreate();
+                MainPage.catList.Add(newCat);
+                newCat.catagoryCreate(MainPage.catList);
 
-                //return to main menu
-                this.Frame.Navigate(typeof(MainPage));
+                //return to previous page
+                //this.Frame.Navigate;
+            }
+            else
+            {
+                messageBox("", "");
             }
 
-           
+
         }
 
-        Boolean checkUnique (String name)
+        Boolean checkUnique(Catagory check)
         {
+
+            if (MainPage.catList.Contains(check))
+            {
+                return false;
+            }
             //return true if name is unique
             return true;
         }
+
+        private async void messageBox (String title, String message)
+        {
+            MessageDialog dialog = new MessageDialog(message, title);
+            await dialog.ShowAsync();
+        }
+
+
     }
+
+    
+
 }

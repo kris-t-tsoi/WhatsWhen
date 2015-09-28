@@ -21,21 +21,29 @@ namespace WhatWhen
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public partial class MainPage : Page
     {
         
-
         //get Root folder
         public static string root =  Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
         public static string path = root + @"\WhatData";
-        static List<Catagory> catList = new List<Catagory>();
+        internal static List<Catagory> catList = new List<Catagory>();
         Catagory useCatMethods = new Catagory();
+        String newCat;
+
+        public void setNewCat(String name) { newCat = name; }
+        
 
         public MainPage()
         {
             this.InitializeComponent();
             checkFilesExist();
             useCatMethods.getCatagories(catList);
+        }
+
+        internal static void setNewCat()
+        {
+            throw new NotImplementedException();
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
