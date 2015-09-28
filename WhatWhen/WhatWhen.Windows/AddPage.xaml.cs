@@ -30,6 +30,11 @@ namespace WhatWhen
 
               }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var parameter = e.Parameter as string;
+        }
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 

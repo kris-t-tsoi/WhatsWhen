@@ -23,7 +23,8 @@ namespace WhatWhen
     /// </summary>
     public partial class MainPage : Page
     {
-        
+        public NavigationCacheMode NavigationCacheMode { get; set; }
+
         //get Root folder
         public static string root =  Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
         public static string path = root + @"\WhatData";
@@ -31,12 +32,33 @@ namespace WhatWhen
         Catagory useCatMethods = new Catagory();
 
         String currentCat;
+
         
-        public MainPage()
+        static MainPage _instance;
+        public static MainPage Current
         {
+            get
+            {
+                return _instance;
+            }
+        }
+
+
+
+        public MainPage()
+        { 
+            _instance = this;
             this.InitializeComponent();
             checkFilesExist();
-            useCatMethods.getCatagories(catList);
+            useCatMethods.getCatagories(Current);
+
+            //somehow get all the data to load from file (await is a little shit)
+
+            foreach (Catagory name in catList)
+            {
+                catListView.Items.Add(name.catName);               
+            }
+            
         }
 
         internal static void setNewCat()
@@ -80,6 +102,7 @@ namespace WhatWhen
 
         private void addAct_Click(object sender, RoutedEventArgs e)
         {
+            //currentCat = currently selected catagory
             this.Frame.Navigate(typeof(AddPage),currentCat);
         }
 
@@ -92,6 +115,12 @@ namespace WhatWhen
         {
 
         }
+
+        public void addtoList (String adding)
+        {
+            Catagory add = new Catagory() { catName = adding, isDeleted = false };
+            catList.Add(add);
+        }
+
     }
 }
-

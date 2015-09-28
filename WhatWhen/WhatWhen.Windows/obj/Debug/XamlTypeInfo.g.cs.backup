@@ -124,21 +124,23 @@ namespace WhatWhen.WhatWhen_Windows_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
+            _typeNameTable = new string[7];
             _typeNameTable[0] = "WhatWhen.AddPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[3] = "WhatWhen.EditPage";
             _typeNameTable[4] = "WhatWhen.MainPage";
-            _typeNameTable[5] = "WhatWhen.NewCatagory";
+            _typeNameTable[5] = "Windows.UI.Xaml.Navigation.NavigationCacheMode";
+            _typeNameTable[6] = "WhatWhen.NewCatagory";
 
-            _typeTable = new global::System.Type[6];
+            _typeTable = new global::System.Type[7];
             _typeTable[0] = typeof(global::WhatWhen.AddPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[3] = typeof(global::WhatWhen.EditPage);
             _typeTable[4] = typeof(global::WhatWhen.MainPage);
-            _typeTable[5] = typeof(global::WhatWhen.NewCatagory);
+            _typeTable[5] = typeof(global::Windows.UI.Xaml.Navigation.NavigationCacheMode);
+            _typeTable[6] = typeof(global::WhatWhen.NewCatagory);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -176,7 +178,7 @@ namespace WhatWhen.WhatWhen_Windows_XamlTypeInfo
         private object Activate_0_AddPage() { return new global::WhatWhen.AddPage(); }
         private object Activate_3_EditPage() { return new global::WhatWhen.EditPage(); }
         private object Activate_4_MainPage() { return new global::WhatWhen.MainPage(); }
-        private object Activate_5_NewCatagory() { return new global::WhatWhen.NewCatagory(); }
+        private object Activate_6_NewCatagory() { return new global::WhatWhen.NewCatagory(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -213,13 +215,18 @@ namespace WhatWhen.WhatWhen_Windows_XamlTypeInfo
             case 4:   //  WhatWhen.MainPage
                 userType = new global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_4_MainPage;
+                userType.AddMemberName("NavigationCacheMode");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 5:   //  WhatWhen.NewCatagory
+            case 5:   //  Windows.UI.Xaml.Navigation.NavigationCacheMode
+                xamlType = new global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  WhatWhen.NewCatagory
                 userType = new global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_NewCatagory;
+                userType.Activator = Activate_6_NewCatagory;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -228,11 +235,31 @@ namespace WhatWhen.WhatWhen_Windows_XamlTypeInfo
         }
 
 
+        private object get_0_MainPage_NavigationCacheMode(object instance)
+        {
+            var that = (global::WhatWhen.MainPage)instance;
+            return that.NavigationCacheMode;
+        }
+        private void set_0_MainPage_NavigationCacheMode(object instance, object Value)
+        {
+            var that = (global::WhatWhen.MainPage)instance;
+            that.NavigationCacheMode = (global::Windows.UI.Xaml.Navigation.NavigationCacheMode)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "WhatWhen.MainPage.NavigationCacheMode":
+                userType = (global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WhatWhen.MainPage");
+                xamlMember = new global::WhatWhen.WhatWhen_Windows_XamlTypeInfo.XamlMember(this, "NavigationCacheMode", "Windows.UI.Xaml.Navigation.NavigationCacheMode");
+                xamlMember.Getter = get_0_MainPage_NavigationCacheMode;
+                xamlMember.Setter = set_0_MainPage_NavigationCacheMode;
+                break;
+            }
             return xamlMember;
         }
     }

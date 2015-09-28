@@ -72,8 +72,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <DatePicker Name="Date" Grid.Column="0" HorizontalAlignment="Center" Height="61" VerticalAlignment="Center" Width="374" FontSize="26" />
-                <TimePicker Name="Time" Grid.Column="1" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="387" FontSize="26"/>
+                <DatePicker Name="pageDate" Grid.Column="0" HorizontalAlignment="Center" Height="61" VerticalAlignment="Center" Width="374" FontSize="26" />
+                <TimePicker Name="pageTime" Grid.Column="1" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="387" FontSize="26"/>
 
             </Grid>
 

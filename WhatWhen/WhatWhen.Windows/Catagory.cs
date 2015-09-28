@@ -67,30 +67,45 @@ namespace WhatWhen
             }
             }
 
-        public async void getCatagories(List<Catagory> list)
+        public async void getCatagories( MainPage mainP)
         {
-            //get catagory.txt path
-            StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
 
+
+            //get catagory.txt path
+            var catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
+            
             //start a file stream for reading
             Stream fileStream = await catagoryFile.OpenStreamForReadAsync();
 
             //rewrite all and add catagory into catagory.txt          
             using (StreamReader read = new StreamReader(fileStream))
+  
             {
                 string line;
-                while ((line = read.ReadLine())!= null)
+                while ((line = read.ReadLine()) != null)
                 {
                     //read line, and store data in list
-                  Catagory filedata = new Catagory() { catName = line, isDeleted =false };
-                    list.Add(filedata);
+                    // Catagory filedata = new Catagory() { catName = line, isDeleted =false };
+                    mainP.addtoList(line);
                     //read line
                     read.ReadLine();
-                }   
-                  
+                }
+
             }
         }
 
+
+        Stream gernerateStreamFromString(String address)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter wr = new StreamWriter(stream);
+            wr.Write(address);
+            wr.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
+       
         async void deleteFile(String filename)
         {
             StorageFile deleteFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\" + filename);
