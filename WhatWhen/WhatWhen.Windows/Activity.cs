@@ -10,7 +10,6 @@ namespace WhatWhen
     {
         internal string actName;
         internal DateTime actDue;
-        internal Boolean actImportant;
         internal Boolean actFinished;
         internal Boolean isDeleted;
     }

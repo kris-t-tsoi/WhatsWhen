@@ -97,12 +97,12 @@ namespace WhatWhen
             await deleteFile.DeleteAsync();
         }
 
-
+        //get activites per category
         public async void getActivitiesInCatagory()
         {
           
             //get text path
-            StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
+            StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName);
 
             //start a file stream for reading
             Stream fileStream = await actFile.OpenStreamForReadAsync();
@@ -124,6 +124,32 @@ namespace WhatWhen
             }
         }
 
+
+        async void updateIndividaulCatText(List<Catagory> list)
+        {
+            //get catagory.txt path
+            StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName);
+
+            //start a file stream for writing
+            Stream fileStream = await catFile.OpenStreamForWriteAsync();
+
+            //rewrite all and add catagory into catagory.txt          
+            using (StreamWriter writer = new StreamWriter(fileStream))
+            {
+                foreach (Activity line in this.activityItems)
+                {   //if the user has deleted the catagory, do not save in file
+                    if (line.isDeleted == false)
+                    {
+                        writer.WriteLine(line.actName);
+                    }
+                    else
+                    {   //if activity is deleted remove from activity list
+                        activityItems.Remove(line);
+                    }
+                   
+                }
+            }
+        }
 
     }
 }

@@ -21,7 +21,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="WrapWholeWords" Text="Add New Catagory" VerticalAlignment="Center" Width="554" FontSize="64" Height="72"/>
-            <TextBox x:Name="newCatName" HorizontalAlignment="Center" Margin="76,200,43,120" Grid.Row="1" TextWrapping="Wrap" Text="Enter Name of New Catagory" Width="792" FontSize="48" RenderTransformOrigin="0.498,2.211"/>
+            <TextBox x:Name="newCatName" HorizontalAlignment="Center" Margin="76,200,43,120" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Enter Name of New Catagory" Width="792" FontSize="48" RenderTransformOrigin="0.498,2.211"/>
             <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="60" Margin="76,94,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Name of New Catagory:" VerticalAlignment="Top" Width="621" FontSize="48"/>
             <Button x:Name="okbutton" Content="Create" HorizontalAlignment="Left" Height="109" Margin="523,70,0,0" Grid.Row="2" VerticalAlignment="Top" Width="239" FontSize="29.333" Click="okbutton_Click"/>
             <Button x:Name="cancelbutton" Content="Cancel" HorizontalAlignment="Left" Height="109" Margin="140,70,0,0" Grid.Row="2" VerticalAlignment="Top" Width="239" FontSize="29.333" Click="cancelbutton_Click"/>

@@ -49,7 +49,6 @@
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="TextWrapping" />
-      <RootProperty Name="Text" />
       <RootProperty Name="Width" />
       <RootProperty Name="RenderTransformOrigin" />
       <RootEvent Name="TextChanged" />

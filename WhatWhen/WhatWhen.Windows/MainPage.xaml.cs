@@ -72,7 +72,7 @@ namespace WhatWhen
 
         private void addCat_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(NewCatagory));
         }
 
         private void deleteCat_Click(object sender, RoutedEventArgs e)
@@ -87,7 +87,7 @@ namespace WhatWhen
 
         private void editAct_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(EditPage));
         }
 
         private void deleteAct_Click(object sender, RoutedEventArgs e)
