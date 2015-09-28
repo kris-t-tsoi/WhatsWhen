@@ -29,11 +29,9 @@ namespace WhatWhen
         public static string path = root + @"\WhatData";
         internal static List<Catagory> catList = new List<Catagory>();
         Catagory useCatMethods = new Catagory();
-        String newCat;
 
-        public void setNewCat(String name) { newCat = name; }
+        String currentCat;
         
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -82,7 +80,7 @@ namespace WhatWhen
 
         private void addAct_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddPage));
+            this.Frame.Navigate(typeof(AddPage),currentCat);
         }
 
         private void editAct_Click(object sender, RoutedEventArgs e)

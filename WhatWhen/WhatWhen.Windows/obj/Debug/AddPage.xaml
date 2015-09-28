@@ -61,7 +61,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="What's To Do" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
-            <TextBox x:ConnectionId='1' Grid.Column="1" Grid.Row="0" FontSize="26" Margin="0,37,159,61" PlaceholderText="Please Enter What Needs To Be Done"                                   />
+            <TextBox x:ConnectionId='1' Name="userInput" Grid.Column="1" Grid.Row="0" FontSize="26" Margin="0,37,159,61" PlaceholderText="Please Enter What Needs To Be Done"                                   />
 
             <TextBlock Text="When To Do By" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
 
@@ -80,9 +80,9 @@
             <TextBlock Text="Category" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
             <Grid Grid.Column="1" Grid.Row="2">
 
-                <ComboBox x:ConnectionId='4' x:Name="comboBox" Grid.Column="0" HorizontalAlignment="Left" Height="61"  VerticalAlignment="Center" Width="870" FontSize="26" PlaceholderText="Please Select a Category"                                              Margin="0,48"/>
-
-
+                <ComboBox x:ConnectionId='4' x:Name="comboBox" Grid.Column="0" HorizontalAlignment="Left" Height="61"  VerticalAlignment="Center" Width="870" FontSize="26" PlaceholderText="Please Select a Category"                                              Margin="0,48" IsSynchronizedWithCurrentItem="False" />
+                
+               
             </Grid>
             <Button x:ConnectionId='2' x:Name="cancel" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Height="80" Margin="-3,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="250" FontSize="22"                     />
             <Button x:ConnectionId='3' x:Name="ok" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Height="80" Margin="302,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="235" FontSize="22"                 />

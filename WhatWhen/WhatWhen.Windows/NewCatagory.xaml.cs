@@ -47,15 +47,15 @@ namespace WhatWhen
             //get textbox data, check name is unique
             if (checkUnique(newCat) == true)
             {
-                MainPage.catList.Add(newCat);
+
                 newCat.catagoryCreate(MainPage.catList);
 
                 //return to previous page
-                //this.Frame.Navigate;
+                this.Frame.GoBack();
             }
             else
             {
-                messageBox("", "");
+                messageBox("Please Pick Another Name", "There is already another category with the same name");
             }
 
 

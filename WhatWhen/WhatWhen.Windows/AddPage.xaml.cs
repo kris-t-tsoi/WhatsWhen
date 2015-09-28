@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,10 +23,12 @@ namespace WhatWhen
     /// </summary>
     public sealed partial class AddPage : Page
     {
+      
         public AddPage()
         {
             this.InitializeComponent();
-        }
+
+              }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -49,7 +52,9 @@ namespace WhatWhen
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-
+            DateTime day = new DateTime();
+            day=pageDate.Date.Date;
+            Activity newAct = new Activity() { actName = userInput.Text, actDue=day,actFinished=(bool)completeCheckBox.IsChecked,isDeleted=false };
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)

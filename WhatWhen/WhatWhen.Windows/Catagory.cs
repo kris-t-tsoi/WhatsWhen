@@ -49,7 +49,7 @@ namespace WhatWhen
                     else
                     {
                         //remove the deleted catagory's file
-                        deleteFile(line.catName);
+                        deleteFile(line.catName+".txt");
                     }
                 }
                 }
@@ -62,7 +62,7 @@ namespace WhatWhen
             //create own file
             if (await storeFolder.TryGetItemAsync(newFileName) == null)
             {
-                StorageFile catagoryFile = await storeFolder.CreateFileAsync(newFileName);
+                StorageFile catagoryFile = await storeFolder.CreateFileAsync(newFileName+".txt");
 
             }
             }
@@ -102,7 +102,7 @@ namespace WhatWhen
         {
           
             //get text path
-            StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName);
+            StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
 
             //start a file stream for reading
             Stream fileStream = await actFile.OpenStreamForReadAsync();
@@ -128,7 +128,7 @@ namespace WhatWhen
         async void updateIndividaulCatText(List<Catagory> list)
         {
             //get catagory.txt path
-            StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName);
+            StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
 
             //start a file stream for writing
             Stream fileStream = await catFile.OpenStreamForWriteAsync();

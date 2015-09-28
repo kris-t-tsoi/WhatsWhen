@@ -28,7 +28,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.exe">
       <PackagePath>WhatWhen.Windows.exe</PackagePath>
-      <Modified>2015-09-28T09:47:29.163</Modified>
+      <Modified>2015-09-28T10:17:53.375</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
@@ -52,7 +52,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.xr.xml">
       <PackagePath>WhatWhen.Windows.xr.xml</PackagePath>
-      <Modified>2015-09-28T09:47:29.050</Modified>
+      <Modified>2015-09-28T10:13:20.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
@@ -60,7 +60,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\AddPage.xbf">
       <PackagePath>AddPage.xbf</PackagePath>
-      <Modified>2015-09-28T09:47:29.057</Modified>
+      <Modified>2015-09-28T10:13:20.502</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\EditPage.xbf">
       <PackagePath>EditPage.xbf</PackagePath>
@@ -72,7 +72,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\NewCatagory.xbf">
       <PackagePath>NewCatagory.xbf</PackagePath>
-      <Modified>2015-09-28T09:47:29.057</Modified>
+      <Modified>2015-09-28T10:04:30.189</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
