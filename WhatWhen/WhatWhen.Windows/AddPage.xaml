@@ -33,6 +33,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -41,7 +42,8 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
             <TextBlock x:Name="pageTitle" Text="Add New To Do Task" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+            <CheckBox x:Name="completeCheckBox" Content="Complete" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"/>
 
         </Grid>
 
@@ -59,7 +61,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="What's To Do" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
-            <TextBox Grid.Column="1" Grid.Row="0" FontSize="26.667" Margin="0,37,491,61" PlaceholderText="Please Enter What Needs To Be Done" TextChanged="TextBox_TextChanged" />
+            <TextBox Grid.Column="1" Grid.Row="0" FontSize="26" Margin="0,37,159,61" PlaceholderText="Please Enter What Needs To Be Done" TextChanged="TextBox_TextChanged" />
 
             <TextBlock Text="When To Do By" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
 
@@ -70,20 +72,16 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <DatePicker Name="Date" Grid.Column="0" HorizontalAlignment="Center" Height="61" VerticalAlignment="Center" Width="374" />
-                <TimePicker Name="Time" Grid.Column="1" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="387" TimeChanged="Time_TimeChanged"/>
+                <DatePicker Name="Date" Grid.Column="0" HorizontalAlignment="Center" Height="61" VerticalAlignment="Center" Width="374" FontSize="26" />
+                <TimePicker Name="Time" Grid.Column="1" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="387" FontSize="26"/>
 
             </Grid>
 
             <TextBlock Text="Category" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
             <Grid Grid.Column="1" Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <ComboBox x:Name="comboBox" Grid.Column="0" HorizontalAlignment="Left" Height="61" Margin="0,35,0,0" VerticalAlignment="Center" Width="534" FontSize="22" PlaceholderText="Please Select a Category" SelectionChanged="comboBox_SelectionChanged"/>
-                <Button x:Name="addCategory" Content="Add New Category" Grid.Column="1" HorizontalAlignment="Left" Height="87" Margin="-3,32,0,0" VerticalAlignment="Top" Width="188" Click="addCategory_Click"/>
+                <ComboBox x:Name="comboBox" Grid.Column="0" HorizontalAlignment="Left" Height="61"  VerticalAlignment="Center" Width="870" FontSize="26" PlaceholderText="Please Select a Category" SelectionChanged="comboBox_SelectionChanged" Margin="0,48"/>
+
 
             </Grid>
             <Button x:Name="cancel" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Height="80" Margin="-3,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="250" FontSize="22" Click="cancel_Click"/>

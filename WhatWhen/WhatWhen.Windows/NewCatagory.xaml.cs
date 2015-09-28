@@ -78,7 +78,10 @@ namespace WhatWhen
             await dialog.ShowAsync();
         }
 
-
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.GoBack();
+        }
     }
 
     

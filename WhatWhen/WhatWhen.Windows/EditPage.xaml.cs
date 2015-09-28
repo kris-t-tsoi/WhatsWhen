@@ -49,12 +49,12 @@ namespace WhatWhen
 
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            this.Frame.GoBack();
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            this.Frame.GoBack();
         }
 
         private void Time_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
