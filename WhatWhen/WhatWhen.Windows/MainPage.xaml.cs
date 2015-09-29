@@ -222,12 +222,7 @@ namespace WhatWhen
 
         private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            refreshCategoryBar();
-           
-            if (catListView.SelectedIndex > -1)
-            {
-                refreshActivityView(catList.ElementAt(catListView.SelectedIndex));
-            }
+         
 
         }
 

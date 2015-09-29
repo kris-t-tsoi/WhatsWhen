@@ -98,8 +98,8 @@
     <RootType FullName="WhatWhen.AddPage" />
     <RootType FullName="WhatWhen.EditPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
-      <RootProperty Name="Background" />
       <RootProperty Name="FontSize" />
+      <RootProperty Name="Background" />
       <RootEvent Name="ItemClick" />
       <RootEvent Name="DoubleTapped" />
     </RootType>
