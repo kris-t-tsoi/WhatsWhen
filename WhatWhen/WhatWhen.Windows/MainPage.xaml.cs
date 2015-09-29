@@ -31,7 +31,7 @@ namespace WhatWhen
         public static string path = root + @"\WhatData";
         internal static List<Catagory> catList = new List<Catagory>();
         Catagory useCatMethods = new Catagory();
-
+        Boolean firstTime = true;
         String currentCat;
 
         
@@ -51,23 +51,36 @@ namespace WhatWhen
             _instance = this;
             this.InitializeComponent();
             checkFilesExist();
+            if (firstTime)
+            {
+                intialCatagories();
+                firstTime = false;
+            }
             refreshCategoryBar();
 
         }
 
-        async void refreshCategoryBar()
-        {
 
+        async void intialCatagories()
+        {
             catListView.Items.Clear();
             bool done = false;
-                done = await useCatMethods.getCatagories(_instance);
+            done = await useCatMethods.getCatagories(_instance);
 
-           //while not
+            //while not
             while (!done) { }
+            refreshCategoryBar();
+        }
+    
+        void refreshCategoryBar()
+        {
+            //clear list view not working
+            catListView.Items.Clear();
             foreach (Catagory name in catList)
             {
                 catListView.Items.Add(name.catName);
             }
+            //catListView.Items.OrderBy(StringComparison);
         }
 
         
