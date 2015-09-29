@@ -50,23 +50,24 @@ namespace WhatWhen
             _instance = this;
             this.InitializeComponent();
             checkFilesExist();
-            useCatMethods.getCatagories(Current);
+            refreshCategoryBar();
 
-            //somehow get all the data to load from file (await is a little shit)
+        }
 
+        async void refreshCategoryBar()
+        {
+            bool done = false;
+                done = await useCatMethods.getCatagories(Current);
+
+           //while not
+            while (!done) { }
             foreach (Catagory name in catList)
             {
-                catListView.Items.Add(name.catName);               
+                catListView.Items.Add(name.catName);
             }
-            
         }
 
-        internal static void setNewCat()
-        {
-            throw new NotImplementedException();
-        }
-           
-
+        
         async void checkFilesExist()
         {
             //check if Data Folder exists("WhatData"), else create

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace WhatWhen
@@ -67,31 +68,36 @@ namespace WhatWhen
             }
             }
 
-        public async void getCatagories( MainPage mainP)
+
+        public async Task<bool> getCatagories( MainPage mainP)
         {
 
 
             //get catagory.txt path
             var catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
-            
-            //start a file stream for reading
-            Stream fileStream = await catagoryFile.OpenStreamForReadAsync();
-
-            //rewrite all and add catagory into catagory.txt          
-            using (StreamReader read = new StreamReader(fileStream))
-  
+            if (catagoryFile != null)
             {
-                string line;
-                while ((line = read.ReadLine()) != null)
-                {
-                    //read line, and store data in list
-                    // Catagory filedata = new Catagory() { catName = line, isDeleted =false };
-                    mainP.addtoList(line);
-                    //read line
-                    read.ReadLine();
-                }
+                Stream fileStream = await catagoryFile.OpenStreamForReadAsync();
 
+                //rewrite all and add catagory into catagory.txt          
+                using (StreamReader read = new StreamReader(fileStream))
+
+                {
+                    string line;
+                    while ((line = read.ReadLine()) != null)
+                    {
+                        //read line, and store data in list
+                        // Catagory filedata = new Catagory() { catName = line, isDeleted =false };
+                        mainP.addtoList(line);
+                        //read line
+                        read.ReadLine();
+                    }
+
+                }
             }
+
+            return true;
+            
         }
 
 
