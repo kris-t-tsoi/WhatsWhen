@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,7 +33,6 @@ namespace WhatWhen
         internal static List<Catagory> catList = new List<Catagory>();
         Catagory useCatMethods = new Catagory();
         Boolean firstTime = true;
-        String currentCat;
 
         
         static MainPage _instance;
@@ -51,13 +51,14 @@ namespace WhatWhen
             _instance = this;
             this.InitializeComponent();
             checkFilesExist();
-            if (firstTime)
+            //goes in here everytime page opens up
+            if (firstTime ==true)
             {
                 intialCatagories();
                 firstTime = false;
             }
             refreshCategoryBar();
-
+          
         }
 
 
@@ -133,19 +134,42 @@ namespace WhatWhen
         private void addAct_Click(object sender, RoutedEventArgs e)
         {
             //currentCat = currently selected catagory
-            this.Frame.Navigate(typeof(AddPage),currentCat);
+            if (catListView.SelectedItems.Count==0) {
+                messageBox("No Category was Selected", "Please select the category you wish to add a To do in");
+            } else
+            {
+                this.Frame.Navigate(typeof(AddPage), catList.ElementAt(catListView.SelectedIndex));
+            }
+
+            
         }
 
 
         private void editAct_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(EditPage));
+            //change catListView
+            if (catListView.SelectedItems.Count == 0)
+            {
+
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(EditPage));
+            }
         }
 
         private void deleteAct_Click(object sender, RoutedEventArgs e)
         {
+            //change catListView
+            if (catListView.SelectedItems.Count == 0)
+            {
+               
+            }
+            else
+            {
 
-        }
+            }
+            }
 
         public void addtoList (String adding)
         {
@@ -153,5 +177,52 @@ namespace WhatWhen
             catList.Add(add);
         }
 
+        private async void messageBox(String title, String message)
+        {
+            MessageDialog dialog = new MessageDialog(message, title);
+            await dialog.ShowAsync();
+        }
+
+        private void catListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            int selIndex = catListView.SelectedIndex;
+            Catagory selectCat = catList.ElementAt(selIndex);
+            refreshActivityView(selectCat);
+
+        }
+
+
+        void refreshActivityView(Catagory name)
+        {
+            //clear list view not working
+            doneListView.Items.Clear();
+            overListView.Items.Clear();
+            doListView.Items.Clear();
+
+            foreach (Activity act in name.activityItems) {
+
+                if (act.actFinished == true) {
+                    doneListView.Items.Add(act.actName);
+                }else if (act.actDue<DateTime.Now)
+                {
+                    overListView.Items.Add(act.actName);
+                }
+                else
+                {
+                    doListView.Items.Add(act.actName);
+                }
+
+
+
+
+                catListView.Items.Add(name.catName);
+            }
+            //catListView.Items.OrderBy(StringComparison);
+        }
+
+        private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            refreshCategoryBar();
+        }
     }
 }

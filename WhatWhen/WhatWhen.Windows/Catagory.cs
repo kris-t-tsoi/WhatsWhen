@@ -16,7 +16,6 @@ namespace WhatWhen
               
          public void catagoryCreate (List<Catagory> list)
         {
-            
                 //wait until catagory name is set
                 while (catName == null) { }
 
@@ -25,8 +24,7 @@ namespace WhatWhen
 
             //add to catagory list then update catagory file
             list.Add(this);
-            updateCatagoryText(list);               
-
+            updateCatagoryText(list);           
             }          
         
 
@@ -59,22 +57,18 @@ namespace WhatWhen
         }
          async void createFile(string newFileName)
         {
-            
             StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(MainPage.path);
 
             //create own file
             if (await storeFolder.TryGetItemAsync(newFileName) == null)
             {
                 StorageFile catagoryFile = await storeFolder.CreateFileAsync(newFileName+".txt");
-
             }
             }
 
 
         public async Task<bool> getCatagories( MainPage mainP)
         {
-
-
             //get catagory.txt path
             var catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
             if (catagoryFile != null)
@@ -83,7 +77,6 @@ namespace WhatWhen
 
                 //rewrite all and add catagory into catagory.txt          
                 using (StreamReader read = new StreamReader(fileStream))
-
                 {
                     string line;
                     while ((line = read.ReadLine()) != null)
@@ -92,12 +85,9 @@ namespace WhatWhen
                         Catagory filedata = new Catagory() { catName = line, isDeleted =false };
                         mainP.addtoList(line);
                     }
-
                 }
             }
-
             return true;
-            
         }
 
 
@@ -110,7 +100,6 @@ namespace WhatWhen
         //get activites per category
         public async void getActivitiesInCatagory()
         {
-          
             //get text path
             StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
 
@@ -125,20 +114,19 @@ namespace WhatWhen
                 {
                     //split line, and store data in list
                     String[] info = line.Split('\t');
-                    Activity filedata = new Activity() { };
+                    Activity filedata = new Activity() {actName=info[0], actDue= Convert.ToDateTime(info[1]), actFinished=Convert.ToBoolean(info[2])};
                     activityItems.Add(filedata);
                     //read line
                     read.ReadLine();
                 }
-
             }
         }
 
 
-        async void updateIndividaulCatText(List<Catagory> list)
+        public  async void updateIndividaulCatText(Catagory list)
         {
             //get catagory.txt path
-            StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
+            StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+list.catName+".txt");
 
             //start a file stream for writing
             Stream fileStream = await catFile.OpenStreamForWriteAsync();
@@ -150,13 +138,12 @@ namespace WhatWhen
                 {   //if the user has deleted the catagory, do not save in file
                     if (line.isDeleted == false)
                     {
-                        writer.WriteLine(line.actName);
+                        writer.WriteLine(line.actName+"\t"+line.actDue + "\t" +line.actFinished);
                     }
                     else
                     {   //if activity is deleted remove from activity list
                         activityItems.Remove(line);
                     }
-                   
                 }
             }
         }

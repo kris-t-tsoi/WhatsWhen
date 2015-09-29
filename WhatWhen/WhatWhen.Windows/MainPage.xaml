@@ -5,7 +5,7 @@
     xmlns:local="using:WhatWhen"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" PointerPressed="Page_PointerPressed">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -64,7 +64,7 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Categories" FontSize="26.667" Margin="40,0,51,0" Width="182"/>
                 </Grid>
 
-                <ListView  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="16">
+                <ListView  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="16" ItemClick="catListView_ItemClick">
                   
                     <ListView.Background>
                         <SolidColorBrush Color="Plum" />
@@ -88,7 +88,7 @@
                     <TextBlock Text="What Needs To Be Done" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView Grid.Column="0" Grid.Row="1">
+                <ListView  x:Name="doListView" Grid.Column="0" Grid.Row="1">
                     <ListView.Background>
                         <SolidColorBrush Color="LightBlue" />
                     </ListView.Background>
@@ -110,7 +110,7 @@
                     <TextBlock Text="What's Overdue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView Grid.Column="0" Grid.Row="1">
+                <ListView  x:Name="overListView" Grid.Column="0" Grid.Row="1">
                     <ListView.Background>
                         <SolidColorBrush Color="Salmon" />
                     </ListView.Background>
@@ -123,7 +123,7 @@
                     <TextBlock HorizontalAlignment="Center" Text="What's Done" VerticalAlignment="Center" FontSize="29.333"/>
                 </Grid>
 
-                <ListView Grid.Column="0" Grid.Row="3">
+                <ListView  x:Name="doneListView" Grid.Column="0" Grid.Row="3">
                     <ListView.Background>
                         <SolidColorBrush Color="LightGreen" />
                     </ListView.Background>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +24,7 @@ namespace WhatWhen
     /// </summary>
     public sealed partial class AddPage : Page
     {
+        Catagory cat;
       
         public AddPage()
         {
@@ -32,7 +34,7 @@ namespace WhatWhen
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var parameter = e.Parameter as string;
+            cat = e.Parameter as Catagory;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -40,16 +42,7 @@ namespace WhatWhen
 
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void addCategory_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NewCatagory));
-        }
-
+    
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
@@ -58,8 +51,28 @@ namespace WhatWhen
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             DateTime day = new DateTime();
-            day=pageDate.Date.Date;
-            Activity newAct = new Activity() { actName = userInput.Text, actDue=day,actFinished=(bool)completeCheckBox.IsChecked,isDeleted=false };
+            day = pageDate.Date.Date;
+
+            if (userInput.Text == "") { //if textbox is empty
+
+
+            }else if (day < DateTime.Now) //if due date has already ended
+            {
+
+                           }
+            else
+            {
+                Activity newAct = new Activity() { actName = userInput.Text, actDue = day, actFinished = (bool)completeCheckBox.IsChecked, isDeleted = false };
+                cat.activityItems.Add(newAct);
+                cat.updateIndividaulCatText(cat);
+                this.Frame.GoBack();
+
+            }
+
+
+
+            
+            
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -67,9 +80,12 @@ namespace WhatWhen
             this.Frame.GoBack();
         }
 
-        private void Time_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
+        private async void messageBox(String title, String message)
         {
-
+            MessageDialog dialog = new MessageDialog(message, title);
+            await dialog.ShowAsync();
         }
+
+
     }
 }

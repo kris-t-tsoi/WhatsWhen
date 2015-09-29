@@ -22,10 +22,18 @@ namespace WhatWhen
     /// </summary>
     public sealed partial class EditPage : Page
     {
+        Catagory cat;
         public EditPage()
         {
             this.InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            cat = e.Parameter as Catagory;
+           
+        }
+
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

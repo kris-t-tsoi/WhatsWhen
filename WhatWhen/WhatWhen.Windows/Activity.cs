@@ -11,6 +11,8 @@ namespace WhatWhen
         internal string actName;
         internal DateTime actDue;
         internal Boolean actFinished;
-        internal Boolean isDeleted;
+        internal Boolean isDeleted = false;
     }
+
+
 }
