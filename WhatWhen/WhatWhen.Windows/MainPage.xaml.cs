@@ -223,6 +223,22 @@ namespace WhatWhen
         private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             refreshCategoryBar();
+           
+            if (catListView.SelectedIndex > -1)
+            {
+                refreshActivityView(catList.ElementAt(catListView.SelectedIndex));
+            }
+
         }
+
+        private async void catListView_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            int selIndex = catListView.SelectedIndex;
+            Catagory selectCat = catList.ElementAt(selIndex);
+           bool done = await selectCat.getActivitiesInCatagory();
+            while (!done) { }
+            refreshActivityView(selectCat);
+        }
+
     }
 }

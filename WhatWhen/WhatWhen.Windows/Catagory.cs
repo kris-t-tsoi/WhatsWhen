@@ -98,7 +98,7 @@ namespace WhatWhen
         }
 
         //get activites per category
-        public async void getActivitiesInCatagory()
+        public async Task<bool> getActivitiesInCatagory()
         {
             //get text path
             StorageFile actFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+this.catName+".txt");
@@ -120,6 +120,7 @@ namespace WhatWhen
                     read.ReadLine();
                 }
             }
+            return true;
         }
 
 

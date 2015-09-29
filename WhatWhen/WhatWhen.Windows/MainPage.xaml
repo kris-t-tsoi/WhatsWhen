@@ -64,7 +64,7 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Categories" FontSize="26.667" Margin="40,0,51,0" Width="182"/>
                 </Grid>
 
-                <ListView  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="16" ItemClick="catListView_ItemClick">
+                <ListView  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="16" ItemClick="catListView_ItemClick" DoubleTapped="catListView_DoubleTapped">
                   
                     <ListView.Background>
                         <SolidColorBrush Color="Plum" />

@@ -101,6 +101,7 @@
       <RootProperty Name="Background" />
       <RootProperty Name="FontSize" />
       <RootEvent Name="ItemClick" />
+      <RootEvent Name="DoubleTapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
       <RootProperty Name="Color" />
