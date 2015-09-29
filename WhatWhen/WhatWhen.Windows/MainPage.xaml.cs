@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -56,8 +57,10 @@ namespace WhatWhen
 
         async void refreshCategoryBar()
         {
+
+            catListView.Items.Clear();
             bool done = false;
-                done = await useCatMethods.getCatagories(Current);
+                done = await useCatMethods.getCatagories(_instance);
 
            //while not
             while (!done) { }
@@ -98,7 +101,20 @@ namespace WhatWhen
 
         private void deleteCat_Click(object sender, RoutedEventArgs e)
         {
+            delCat();
+        }
 
+        async void delCat()
+        {
+            int delIndex = catListView.SelectedIndex;
+            Catagory deleteCat = catList.ElementAt(delIndex);
+            deleteCat.isDeleted = true;
+            bool finishDelete = await deleteCat.updateCatagoryText(catList);
+            if (finishDelete == true)
+            {
+                catList.Remove(deleteCat);
+                refreshCategoryBar();
+            }            
         }
 
         private void addAct_Click(object sender, RoutedEventArgs e)
@@ -106,6 +122,7 @@ namespace WhatWhen
             //currentCat = currently selected catagory
             this.Frame.Navigate(typeof(AddPage),currentCat);
         }
+
 
         private void editAct_Click(object sender, RoutedEventArgs e)
         {

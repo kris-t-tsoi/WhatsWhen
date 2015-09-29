@@ -30,7 +30,7 @@ namespace WhatWhen
             }          
         
 
-         async void updateCatagoryText(List<Catagory> list)
+         internal async Task<bool> updateCatagoryText(List<Catagory> list)
         {            
             //get catagory.txt path
             StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
@@ -49,11 +49,13 @@ namespace WhatWhen
                     }
                     else
                     {
-                        //remove the deleted catagory's file
+                        //remove the deleted catagory's file and from list
                         deleteFile(line.catName+".txt");
+                       // list.Remove(line);
                     }
                 }
                 }
+            return true;
         }
          async void createFile(string newFileName)
         {
@@ -87,10 +89,8 @@ namespace WhatWhen
                     while ((line = read.ReadLine()) != null)
                     {
                         //read line, and store data in list
-                        // Catagory filedata = new Catagory() { catName = line, isDeleted =false };
+                        Catagory filedata = new Catagory() { catName = line, isDeleted =false };
                         mainP.addtoList(line);
-                        //read line
-                        read.ReadLine();
                     }
 
                 }
@@ -101,17 +101,6 @@ namespace WhatWhen
         }
 
 
-        Stream gernerateStreamFromString(String address)
-        {
-            MemoryStream stream = new MemoryStream();
-            StreamWriter wr = new StreamWriter(stream);
-            wr.Write(address);
-            wr.Flush();
-            stream.Position = 0;
-            return stream;
-        }
-
-       
         async void deleteFile(String filename)
         {
             StorageFile deleteFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\" + filename);
