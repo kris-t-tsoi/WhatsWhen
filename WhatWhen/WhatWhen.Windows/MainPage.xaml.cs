@@ -33,6 +33,7 @@ namespace WhatWhen
         internal static List<Catagory> catList = new List<Catagory>();
         Catagory useCatMethods = new Catagory();
         Boolean firstTime = true;
+        Catagory currentlyViewing;
 
         
         static MainPage _instance;
@@ -135,7 +136,7 @@ namespace WhatWhen
         {
             //currentCat = currently selected catagory
             if (catListView.SelectedItems.Count==0) {
-                messageBox("No Category was Selected", "Please select the category you wish to add a To do in");
+                messageBox("No Category was Selected", "Please select the category you wish to add a To Do in");
             } else
             {
                 this.Frame.Navigate(typeof(AddPage), catList.ElementAt(catListView.SelectedIndex));
@@ -150,7 +151,7 @@ namespace WhatWhen
             //change catListView
             if (catListView.SelectedItems.Count == 0)
             {
-
+                messageBox("To Do Not Selected", "Please Select a To Do Activity to Edit");
             }
             else
             {
@@ -163,10 +164,12 @@ namespace WhatWhen
             //change catListView
             if (catListView.SelectedItems.Count == 0)
             {
-               
+                messageBox("To Do Not Selected", "Please Select What You Want to Delete");
             }
             else
             {
+                // message box ask if really want to delete
+
 
             }
             }
@@ -210,19 +213,21 @@ namespace WhatWhen
 
             foreach (Activity act in name.activityItems) {
 
+                String print = act.actDue.ToString("dd MMMM yyyy") + "\t\t\t\t" + act.actName;
+
                 if (act.actFinished == true ){
-                    doneListView.Items.Add(act.actName);
+
+                    doneListView.Items.Add(print);
 
                 }else if (act.actDue<DateTime.Now)
                 {
-                    overListView.Items.Add(act.actName);
+                    overListView.Items.Add(print);
                 }
                 else
                 {
-                    doListView.Items.Add(act.actName);
+                    doListView.Items.Add(print);
                 }
-
-                catListView.Items.Add(name.catName);
+                
             }
             //catListView.Items.OrderBy(StringComparison);
         }
@@ -237,10 +242,23 @@ namespace WhatWhen
         {
             int selIndex = catListView.SelectedIndex;
             Catagory selectCat = catList.ElementAt(selIndex);
+            currentlyViewing = selectCat;
            bool done = await selectCat.getActivitiesInCatagory();
             while (!done) { }
             refreshActivityView(selectCat);
-            refreshCategoryBar();
+        }
+
+        async void delAct(ListView lv)
+        {
+            int delIndex = lv.SelectedIndex;
+            Activity deleteAct = currentlyViewing.activityItems.ElementAt(0); //TODO Fix
+            deleteAct.isDeleted = true;
+            bool finishDelete = await currentlyViewing.updateCatagoryText(catList);
+            if (finishDelete == true)
+            {
+                currentlyViewing.activityItems.Remove(deleteAct);
+                refreshCategoryBar();
+            }
         }
 
     }

@@ -111,6 +111,8 @@ namespace WhatWhen
             //start a file stream for reading
             Stream fileStream = await actFile.OpenStreamForReadAsync();
 
+            this.activityItems = new List<Activity>();
+
             //rewrite all and add catagory into catagory.txt          
             using (StreamReader read = new StreamReader(fileStream))
             {
@@ -119,7 +121,7 @@ namespace WhatWhen
                 {
                     //split line, and store data in list
                     String[] info = line.Split('\t');
-                    if (checkNewActivity(info[0]))
+                    if (checkNewActivity(info[0])==true)
                     {
                         Activity filedata = new Activity() { actName = info[0], actDue = Convert.ToDateTime(info[1]), actFinished = Convert.ToBoolean(info[2]) };
                         activityItems.Add(filedata);

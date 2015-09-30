@@ -50,7 +50,7 @@
                 <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="1" Grid.Column="0">
+            <Grid Grid.Row="1" Grid.Column="0" Margin="5">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -61,7 +61,7 @@
                     <Grid.Background>
                         <SolidColorBrush Color="MediumOrchid" />
                     </Grid.Background>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Categories" FontSize="26.667" Margin="40,0,51,0" Width="182"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Categories" FontSize="26.667"  Width="182"/>
                 </Grid>
 
                 <ListView x:ConnectionId='2'  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="96"                                                                          >
@@ -74,7 +74,7 @@
 
 
 
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="1" Margin="5">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -88,14 +88,15 @@
                     <TextBlock Text="What Needs To Be Done" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333">
+                <ListView  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333" >
                     <ListView.Background>
                         <SolidColorBrush Color="LightBlue" />
                     </ListView.Background>
+                    
                 </ListView>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="2" Margin="5" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="5*"/>
