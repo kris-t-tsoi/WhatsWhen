@@ -24,10 +24,32 @@ namespace WhatWhen
     /// </summary>
     public sealed partial class NewCatagory : Page
     {
+
+        List<Catagory> cat;
+
         public NewCatagory()
         {
             this.InitializeComponent();
+            
+            
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            cat = e.Parameter as List<Catagory>;
+        }
+
+        void refreshCategoryBar()
+        {
+            //clear list view not working
+            CatItems.Items.Clear();
+            foreach (Catagory name in cat)
+            {
+                CatItems.Items.Add(name.catName);
+            }
+            
+        }
+
 
         private void newCatName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -81,6 +103,11 @@ namespace WhatWhen
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
+        }
+
+        private void CatItems_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            refreshCategoryBar();
         }
     }
 

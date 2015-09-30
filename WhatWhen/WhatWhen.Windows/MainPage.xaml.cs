@@ -112,12 +112,20 @@ namespace WhatWhen
 
         private void addCat_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(NewCatagory));
+            this.Frame.Navigate(typeof(NewCatagory),catList);
         }
 
         private void deleteCat_Click(object sender, RoutedEventArgs e)
         {
-            delCat();
+            if(catListView.SelectedItems.Count == 0)
+            {
+                messageBox("Category Not Selected", "Please Select A Category to Delete");
+            }
+            else
+            {
+                delCat();
+
+            }
         }
 
         async void delCat()
@@ -150,7 +158,7 @@ namespace WhatWhen
         private void editAct_Click(object sender, RoutedEventArgs e)
         {
             //change catListView
-            if (catListView.SelectedItems.Count == 0)
+            if (doListView.SelectedItems.Count == 0 && doneListView.SelectedItems.Count == 0 && overListView.SelectedItems.Count == 0)
             {
                 messageBox("To Do Not Selected", "Please Select a To Do Activity to Edit");
             }
@@ -258,6 +266,7 @@ namespace WhatWhen
 
                 if (act.actFinished == true ){
 
+                    doneListView.FontSize = 22;
                     doneListView.Items.Add(print);
                     doneIndex.Add(act);
 
@@ -304,5 +313,19 @@ namespace WhatWhen
             }
         }
 
+        private void doListView_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            refreshActivityView(currentlyViewing);
+        }
+
+        private void overListView_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            refreshActivityView(currentlyViewing);
+        }
+
+        private void doneListView_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            refreshActivityView(currentlyViewing);
+        }
     }
 }

@@ -101,6 +101,8 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="FontSize" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Name" />
+      <RootEvent Name="PointerPressed" />
       <RootEvent Name="ItemClick" />
       <RootEvent Name="DoubleTapped" />
     </RootType>

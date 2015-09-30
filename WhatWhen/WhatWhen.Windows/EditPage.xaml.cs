@@ -71,12 +71,10 @@ namespace WhatWhen
             else
             {
 
-                pam.act.actName = userInput.Text;
-                pam.act.actFinished = (bool)completeCheckBox.IsChecked;
-                pam.act.isDeleted = false;
-                pam.act.actDue = day;
-                bool finish = await pam.cat.updateIndividaulCatText(pam.cat, "");
-                while (!finish) { }
+                Activity newAct = new Activity() { actName = userInput.Text, actDue = day, actFinished = (bool)completeCheckBox.IsChecked, isDeleted = false };
+                pam.cat.activityItems.Remove(pam.act);
+               pam.cat.activityItems.Add(newAct);
+                pam.cat.updateIndividaulCatText(pam.cat, "");
                 this.Frame.GoBack();
             }
         }

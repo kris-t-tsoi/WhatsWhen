@@ -88,7 +88,7 @@
                     <TextBlock Text="What Needs To Be Done" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333" >
+                <ListView  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333" PointerPressed="doListView_PointerPressed" >
                     <ListView.Background>
                         <SolidColorBrush Color="LightBlue" />
                     </ListView.Background>
@@ -111,7 +111,7 @@
                     <TextBlock Text="What's Overdue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView  x:Name="overListView" Grid.Column="0" Grid.Row="1" FontSize="29.333">
+                <ListView  x:Name="overListView" Grid.Column="0" Grid.Row="1" FontSize="29.333" PointerPressed="overListView_PointerPressed">
                     <ListView.Background>
                         <SolidColorBrush Color="Salmon" />
                     </ListView.Background>
@@ -124,7 +124,7 @@
                     <TextBlock HorizontalAlignment="Center" Text="What's Done" VerticalAlignment="Center" FontSize="29.333"/>
                 </Grid>
 
-                <ListView  x:Name="doneListView" Grid.Column="0" Grid.Row="3" FontSize="29.333">
+                <ListView  x:Name="doneListView" Grid.Column="0" Grid.Row="3" FontSize="29.333" PointerPressed="doneListView_PointerPressed">
                     <ListView.Background>
                         <SolidColorBrush Color="LightGreen" />
                     </ListView.Background>
