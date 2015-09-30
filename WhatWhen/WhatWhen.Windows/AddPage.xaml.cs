@@ -54,25 +54,21 @@ namespace WhatWhen
             day = pageDate.Date.Date;
 
             if (userInput.Text == "") { //if textbox is empty
+                messageBox("Empty Name", "Name can not be empty");
 
-
-            }else if (day < DateTime.Now) //if due date has already ended
+            }else if (day < DateTime.Now.Date) //if due date has already ended
             {
-
+                messageBox("Due Date Has Already Passed", "Please pick a date in the furture");
                            }
             else
             {
                 Activity newAct = new Activity() { actName = userInput.Text, actDue = day, actFinished = (bool)completeCheckBox.IsChecked, isDeleted = false };
                 cat.activityItems.Add(newAct);
-                cat.updateIndividaulCatText(cat);
+                cat.updateIndividaulCatText(cat,"");
                 this.Frame.GoBack();
 
             }
-
-
-
-            
-            
+                        
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -86,6 +82,7 @@ namespace WhatWhen
             await dialog.ShowAsync();
         }
 
+       
 
     }
 }

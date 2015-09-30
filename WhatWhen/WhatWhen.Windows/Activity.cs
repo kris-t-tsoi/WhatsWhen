@@ -12,6 +12,9 @@ namespace WhatWhen
         internal DateTime actDue;
         internal Boolean actFinished;
         internal Boolean isDeleted = false;
+
+
+
     }
 
 

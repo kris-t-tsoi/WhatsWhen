@@ -25,8 +25,6 @@ namespace WhatWhen
     /// </summary>
     public partial class MainPage : Page
     {
-        public NavigationCacheMode NavigationCacheMode { get; set; }
-
         //get Root folder
         public static string root =  Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
         public static string path = root + @"\WhatData";
@@ -34,8 +32,11 @@ namespace WhatWhen
         Catagory useCatMethods = new Catagory();
         Boolean firstTime = true;
         Catagory currentlyViewing;
+        List<Activity> toDoIndex;
+        List<Activity> overIndex;
+        List<Activity> doneIndex;
 
-        
+
         static MainPage _instance;
         public static MainPage Current
         {
@@ -153,24 +154,61 @@ namespace WhatWhen
             {
                 messageBox("To Do Not Selected", "Please Select a To Do Activity to Edit");
             }
+            else if ((doListView.SelectedItems.Count + doneListView.SelectedItems.Count + overListView.SelectedItems.Count) > 1)
+            {
+                messageBox("Too Many Items Selected", "Please Only Select One Item You Wish to Edit");
+            }
             else
             {
-                this.Frame.Navigate(typeof(EditPage));
+                PassCatAndAct param = new PassCatAndAct();
+                param.cat = currentlyViewing;
+
+                if (doListView.SelectedItems.Count == 1)
+                {
+                    param.act = toDoIndex.ElementAt(doListView.SelectedIndex);
+                    this.Frame.Navigate(typeof(EditPage),param );
+                }
+                else if (doneListView.SelectedItems.Count == 1)
+                {
+                    param.act = doneIndex.ElementAt(doneListView.SelectedIndex);
+                    this.Frame.Navigate(typeof(EditPage), param);
+                }
+                else
+                {
+                    param.act = overIndex.ElementAt(doneListView.SelectedIndex);
+                    this.Frame.Navigate(typeof(EditPage), param);
+                }
+
+               
             }
         }
 
         private void deleteAct_Click(object sender, RoutedEventArgs e)
         {
             //change catListView
-            if (catListView.SelectedItems.Count == 0)
+            if (doListView.SelectedItems.Count == 0 && doneListView.SelectedItems.Count == 0 && overListView.SelectedItems.Count == 0)
             {
-                messageBox("To Do Not Selected", "Please Select What You Want to Delete");
+                messageBox("To Do Not Selected", "Please Select Which To Do Activity You Wish to Delete");
+            }
+            else if((doListView.SelectedItems.Count + doneListView.SelectedItems.Count+ overListView.SelectedItems.Count) >1)
+            {
+                messageBox("Too Many Items Selected", "Please Only Select One Item You Wish to Delete");
             }
             else
             {
                 // message box ask if really want to delete
 
-
+                if (doListView.SelectedItems.Count == 1){
+                    delAct(doListView, toDoIndex);
+                }
+                else if(doneListView.SelectedItems.Count == 1){
+                    delAct(doneListView, doneIndex);
+                }
+                else
+                {
+                    delAct(overListView,overIndex);
+                }
+                
             }
             }
 
@@ -206,10 +244,13 @@ namespace WhatWhen
 
         void refreshActivityView(Catagory name)
         {
-            //clear list view not working
+           toDoIndex = new List<Activity>();
+            overIndex = new List<Activity>();
+            doneIndex = new List<Activity>();
+
             doneListView.Items.Clear();
-            overListView.Items.Clear();
             doListView.Items.Clear();
+            overListView.Items.Clear();
 
             foreach (Activity act in name.activityItems) {
 
@@ -218,18 +259,21 @@ namespace WhatWhen
                 if (act.actFinished == true ){
 
                     doneListView.Items.Add(print);
+                    doneIndex.Add(act);
 
                 }else if (act.actDue<DateTime.Now)
                 {
                     overListView.Items.Add(print);
+                    overIndex.Add(act);
                 }
                 else
                 {
                     doListView.Items.Add(print);
+                    toDoIndex.Add(act);
                 }
                 
             }
-            //catListView.Items.OrderBy(StringComparison);
+          
         }
 
         private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -248,16 +292,15 @@ namespace WhatWhen
             refreshActivityView(selectCat);
         }
 
-        async void delAct(ListView lv)
+        async void delAct(ListView lv,List<Activity> index)
         {
             int delIndex = lv.SelectedIndex;
-            Activity deleteAct = currentlyViewing.activityItems.ElementAt(0); //TODO Fix
-            deleteAct.isDeleted = true;
-            bool finishDelete = await currentlyViewing.updateCatagoryText(catList);
+            Activity deleteAct = index.ElementAt(delIndex);
+            bool finishDelete = await useCatMethods.updateIndividaulCatText(currentlyViewing , deleteAct.actName);
             if (finishDelete == true)
             {
                 currentlyViewing.activityItems.Remove(deleteAct);
-                refreshCategoryBar();
+                refreshActivityView(currentlyViewing);
             }
         }
 

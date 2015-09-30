@@ -36,7 +36,7 @@ namespace WhatWhen
             //start a file stream for writing
             Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
 
-            
+            List<Catagory> toDelete = new List<Catagory>();
 
             //rewrite all and add catagory into catagory.txt          
             using (StreamWriter writer = new StreamWriter(fileStream))
@@ -50,11 +50,16 @@ namespace WhatWhen
                     else
                     {
                         //remove the deleted catagory's file and from list
-                        deleteFile(line.catName+".txt");
-                       // list.Remove(line);
+                        deleteFile(line.catName + ".txt");
+                        toDelete.Add(line);
                     }
                 }
                 }
+            foreach(Catagory c in toDelete)
+            {
+                list.Remove(c);
+            }
+
             return true;
         }
          async void createFile(string newFileName)
@@ -146,7 +151,7 @@ namespace WhatWhen
         }
 
 
-        public  async void updateIndividaulCatText(Catagory list)
+        public  async Task<bool> updateIndividaulCatText(Catagory list, String delActName)
         {
             //get catagory.txt path
             StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+list.catName+".txt");
@@ -154,21 +159,30 @@ namespace WhatWhen
             //start a file stream for writing
             Stream fileStream = await catFile.OpenStreamForWriteAsync();
 
+            List<Activity> toDelete = new List<Activity>();
+
             //rewrite all and add catagory into catagory.txt          
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
-                foreach (Activity line in this.activityItems)
+                foreach (Activity line in list.activityItems)
                 {   //if the user has deleted the catagory, do not save in file
-                    if (line.isDeleted == false)
+                    if (line.isDeleted == false && !line.actName.Equals(delActName))
                     {
                         writer.WriteLine(line.actName+"\t"+line.actDue + "\t" +line.actFinished);
                     }
                     else
-                    {   //if activity is deleted remove from activity list
-                        activityItems.Remove(line);
+                    {
+                        toDelete.Add(line);
                     }
                 }
             }
+
+            foreach(Activity act in toDelete)
+            {
+                //if activity is deleted remove from activity list
+                activityItems.Remove(act);
+            }
+            return true;
         }
 
     }

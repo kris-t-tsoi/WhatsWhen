@@ -120,6 +120,7 @@
     <Compile Include="NewCatagory.xaml.cs">
       <DependentUpon>NewCatagory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PassCatAndAct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

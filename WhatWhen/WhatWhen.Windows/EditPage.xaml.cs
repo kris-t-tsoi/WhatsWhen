@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,7 +24,7 @@ namespace WhatWhen
     /// </summary>
     public sealed partial class EditPage : Page
     {
-        Catagory cat;
+        PassCatAndAct pam;
         public EditPage()
         {
             this.InitializeComponent();
@@ -30,7 +32,8 @@ namespace WhatWhen
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            cat = e.Parameter as Catagory;
+            pam = e.Parameter as PassCatAndAct;
+            userInput.Text = pam.act.actName;
            
         }
 
@@ -50,12 +53,35 @@ namespace WhatWhen
             this.Frame.Navigate(typeof(NewCatagory));
         }
 
-        private void ok_Click(object sender, RoutedEventArgs e)
+        private async void ok_Click(object sender, RoutedEventArgs e)
         {
 
+            DateTime day = new DateTime();
+            day = pageDate.Date.Date;
+
+            if (userInput.Text == "")
+            { //if textbox is empty
+                messageBox("Empty Name", "Name can not be empty");
+
+            }
+            else if (day < DateTime.Now.Date) //if due date has already ended
+            {
+                messageBox("Due Date Has Already Passed", "Please pick a date in the furture");
+            }
+            else
+            {
+
+                pam.act.actName = userInput.Text;
+                pam.act.actFinished = (bool)completeCheckBox.IsChecked;
+                pam.act.isDeleted = false;
+                pam.act.actDue = day;
+                bool finish = await pam.cat.updateIndividaulCatText(pam.cat, "");
+                while (!finish) { }
+                this.Frame.GoBack();
+            }
         }
 
-        private void cancel_Click(object sender, RoutedEventArgs e)
+          private void cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
         }
@@ -74,5 +100,12 @@ namespace WhatWhen
         {
 
         }
+
+        private async void messageBox(String title, String message)
+        {
+            MessageDialog dialog = new MessageDialog(message, title);
+            await dialog.ShowAsync();
+        }
+
     }
 }
