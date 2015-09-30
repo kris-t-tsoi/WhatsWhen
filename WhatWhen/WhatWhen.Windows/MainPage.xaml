@@ -64,12 +64,20 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Categories" FontSize="26.667"  Width="182"/>
                 </Grid>
 
+                
                 <ListView  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="96" ItemClick="catListView_ItemClick" DoubleTapped="catListView_DoubleTapped">
-                  
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="25"/>
+                            <Setter Property="FontFamily" Value="Segoe Ui Light"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.Background>
                         <SolidColorBrush Color="Plum" />
                     </ListView.Background>
                 </ListView>
+                
             </Grid>
 
 
@@ -89,6 +97,15 @@
                 </Grid>
 
                 <ListView  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333" PointerPressed="doListView_PointerPressed" >
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="25"/>
+                            <Setter Property="FontFamily" Value="Segoe Ui Light"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
                     <ListView.Background>
                         <SolidColorBrush Color="LightBlue" />
                     </ListView.Background>
@@ -112,6 +129,15 @@
                 </Grid>
 
                 <ListView  x:Name="overListView" Grid.Column="0" Grid.Row="1" FontSize="29.333" PointerPressed="overListView_PointerPressed">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="25"/>
+                            <Setter Property="FontFamily" Value="Segoe Ui Light"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
                     <ListView.Background>
                         <SolidColorBrush Color="Salmon" />
                     </ListView.Background>
@@ -125,6 +151,15 @@
                 </Grid>
 
                 <ListView  x:Name="doneListView" Grid.Column="0" Grid.Row="3" FontSize="29.333" PointerPressed="doneListView_PointerPressed">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="25"/>
+                            <Setter Property="FontFamily" Value="Segoe Ui Light"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
                     <ListView.Background>
                         <SolidColorBrush Color="LightGreen" />
                     </ListView.Background>

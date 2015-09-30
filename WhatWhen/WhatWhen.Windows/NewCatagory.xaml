@@ -64,6 +64,15 @@
             </Grid>
 
             <ListView Name="CatItems" Grid.Column="0" Grid.Row="1" PointerPressed="CatItems_PointerPressed">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="FontFamily" Value="Segoe Ui Light"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
                 <ListView.Background>
                     <SolidColorBrush Color="Plum" />
                 </ListView.Background>

@@ -183,7 +183,7 @@ namespace WhatWhen
                 }
                 else
                 {
-                    param.act = overIndex.ElementAt(doneListView.SelectedIndex);
+                    param.act = overIndex.ElementAt(overListView.SelectedIndex);
                     this.Frame.Navigate(typeof(EditPage), param);
                 }
 
@@ -262,7 +262,7 @@ namespace WhatWhen
 
             foreach (Activity act in name.activityItems) {
 
-                String print = act.actDue.ToString("dd MMMM yyyy") + "\t\t\t\t" + act.actName;
+                String print = act.actDue.ToString("dd MMMM yyyy") + "\t\t\t" + act.actName;
 
                 if (act.actFinished == true ){
 

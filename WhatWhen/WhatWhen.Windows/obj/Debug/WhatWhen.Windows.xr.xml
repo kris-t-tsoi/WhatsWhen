@@ -100,11 +100,22 @@
     <RootType FullName="WhatWhen.EditPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="FontSize" />
+      <RootProperty Name="ItemContainerStyle" />
       <RootProperty Name="Background" />
       <RootProperty Name="Name" />
       <RootEvent Name="PointerPressed" />
       <RootEvent Name="ItemClick" />
       <RootEvent Name="DoubleTapped" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListViewItem" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="FontFamily" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
       <RootProperty Name="Color" />

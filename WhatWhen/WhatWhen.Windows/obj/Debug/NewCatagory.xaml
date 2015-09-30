@@ -34,9 +34,10 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"                         />
                 <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" Text="Add New Catagory" VerticalAlignment="Center" Width="554" FontSize="64" Height="72" Grid.Column="1"/>
+
             </Grid>
-            
-            
+
+
             <TextBox x:Name="newCatName" HorizontalAlignment="Center" Margin="76,200,43,120" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Enter Name of New Catagory" Width="792" FontSize="48" RenderTransformOrigin="0.498,2.211"/>
             <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="60" Margin="76,94,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Name of New Catagory:" VerticalAlignment="Top" Width="621" FontSize="48"/>
             <Button x:ConnectionId='2' x:Name="okbutton" Content="Create" HorizontalAlignment="Left" Height="109" Margin="523,70,0,0" Grid.Row="2" VerticalAlignment="Top" Width="239" FontSize="29.333"                       />
@@ -53,10 +54,25 @@
                 <Grid.Background>
                     <SolidColorBrush Color="MediumOrchid" />
                 </Grid.Background>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Existing Categories" FontSize="37.333" Width="325" Height="52" Margin="61,43,69,33"/>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Existing Categories" FontSize="37.333" Width="325" Height="52" Grid.Row="0" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="(Click Below To Refresh)" FontSize="20" Width="219" Height="23" Grid.Row="2" />
             </Grid>
 
             <ListView x:ConnectionId='1' Name="CatItems" Grid.Column="0" Grid.Row="1"                                         >
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="FontFamily" Value="Segoe Ui Light"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
                 <ListView.Background>
                     <SolidColorBrush Color="Plum" />
                 </ListView.Background>
