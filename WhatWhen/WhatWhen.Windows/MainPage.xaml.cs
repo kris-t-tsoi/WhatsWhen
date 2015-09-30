@@ -174,7 +174,16 @@ namespace WhatWhen
         public void addtoList (String adding)
         {
             Catagory add = new Catagory() { catName = adding, isDeleted = false };
+            foreach(Catagory i in catList)
+            {
+                if (i.catName.Equals(add.catName))
+                {
+                    return;
+                }
+            }
             catList.Add(add);
+            
+            
         }
 
         private async void messageBox(String title, String message)
@@ -201,7 +210,8 @@ namespace WhatWhen
 
             foreach (Activity act in name.activityItems) {
 
-                if (act.actFinished == true) {
+                if (act.actFinished == true ){
+
                     doneListView.Items.Add(act.actName);
                 }else if (act.actDue<DateTime.Now)
                 {
@@ -211,9 +221,6 @@ namespace WhatWhen
                 {
                     doListView.Items.Add(act.actName);
                 }
-
-
-
 
                 catListView.Items.Add(name.catName);
             }

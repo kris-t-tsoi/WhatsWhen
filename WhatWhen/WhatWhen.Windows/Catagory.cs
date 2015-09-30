@@ -36,6 +36,8 @@ namespace WhatWhen
             //start a file stream for writing
             Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
 
+            
+
             //rewrite all and add catagory into catagory.txt          
             using (StreamWriter writer = new StreamWriter(fileStream))
             {   
@@ -74,7 +76,7 @@ namespace WhatWhen
             if (catagoryFile != null)
             {
                 Stream fileStream = await catagoryFile.OpenStreamForReadAsync();
-
+                
                 //rewrite all and add catagory into catagory.txt          
                 using (StreamReader read = new StreamReader(fileStream))
                 {
@@ -97,6 +99,9 @@ namespace WhatWhen
             await deleteFile.DeleteAsync();
         }
 
+
+
+
         //get activites per category
         public async Task<bool> getActivitiesInCatagory()
         {
@@ -114,13 +119,29 @@ namespace WhatWhen
                 {
                     //split line, and store data in list
                     String[] info = line.Split('\t');
-                    Activity filedata = new Activity() {actName=info[0], actDue= Convert.ToDateTime(info[1]), actFinished=Convert.ToBoolean(info[2])};
-                    activityItems.Add(filedata);
+                    if (checkNewActivity(info[0]))
+                    {
+                        Activity filedata = new Activity() { actName = info[0], actDue = Convert.ToDateTime(info[1]), actFinished = Convert.ToBoolean(info[2]) };
+                        activityItems.Add(filedata);
+                    }
                     //read line
                     read.ReadLine();
                 }
             }
             return true;
+        }
+
+        bool checkNewActivity(String act)
+        {
+            foreach (Activity a in activityItems)
+            {
+                if (a.actName.Equals(act))
+                {
+                    return false;
+                }
+            }
+            return true;
+
         }
 
 

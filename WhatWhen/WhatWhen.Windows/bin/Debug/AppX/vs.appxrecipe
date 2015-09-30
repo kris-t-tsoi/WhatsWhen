@@ -28,7 +28,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.exe">
       <PackagePath>WhatWhen.Windows.exe</PackagePath>
-      <Modified>2015-09-29T11:22:05.696</Modified>
+      <Modified>2015-09-30T00:43:56.681</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
