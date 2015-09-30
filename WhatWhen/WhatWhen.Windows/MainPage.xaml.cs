@@ -211,8 +211,8 @@ namespace WhatWhen
             foreach (Activity act in name.activityItems) {
 
                 if (act.actFinished == true ){
-
                     doneListView.Items.Add(act.actName);
+
                 }else if (act.actDue<DateTime.Now)
                 {
                     overListView.Items.Add(act.actName);
@@ -240,6 +240,7 @@ namespace WhatWhen
            bool done = await selectCat.getActivitiesInCatagory();
             while (!done) { }
             refreshActivityView(selectCat);
+            refreshCategoryBar();
         }
 
     }

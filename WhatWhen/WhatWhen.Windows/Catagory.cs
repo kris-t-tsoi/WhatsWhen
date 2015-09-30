@@ -124,8 +124,7 @@ namespace WhatWhen
                         Activity filedata = new Activity() { actName = info[0], actDue = Convert.ToDateTime(info[1]), actFinished = Convert.ToBoolean(info[2]) };
                         activityItems.Add(filedata);
                     }
-                    //read line
-                    read.ReadLine();
+                   
                 }
             }
             return true;
