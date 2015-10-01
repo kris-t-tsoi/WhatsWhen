@@ -1,3 +1,4 @@
-work	30/09/2015 12:00:00 AM	False
 test	30/10/2015 12:00:00 AM	True
-check	30/10/2015 12:00:00 AM	False
+time	2/10/2015 12:00:00 AM	False
+doing	6/10/2015 12:00:00 AM	False
+sleep	6/10/2015 12:00:00 AM	False

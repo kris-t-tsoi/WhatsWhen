@@ -60,6 +60,8 @@ namespace WhatWhen
                 firstTime = false;
             }
             refreshCategoryBar();
+
+
           
         }
 
@@ -262,7 +264,7 @@ namespace WhatWhen
 
             foreach (Activity act in name.activityItems) {
 
-                String print = act.actDue.ToString("dd MMMM yyyy") + "\t\t\t" + act.actName;
+                String print = act.actDue.ToString("dd / MM / yyyy") + "\t\t\t" + act.actName;
 
                 if (act.actFinished == true ){
 
@@ -305,10 +307,10 @@ namespace WhatWhen
         {
             int delIndex = lv.SelectedIndex;
             Activity deleteAct = index.ElementAt(delIndex);
+            currentlyViewing.activityItems.Remove(deleteAct);
             bool finishDelete = await useCatMethods.updateIndividaulCatText(currentlyViewing , deleteAct.actName);
             if (finishDelete == true)
-            {
-                currentlyViewing.activityItems.Remove(deleteAct);
+            {                
                 refreshActivityView(currentlyViewing);
             }
         }

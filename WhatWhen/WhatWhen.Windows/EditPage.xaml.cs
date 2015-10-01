@@ -64,10 +64,6 @@ namespace WhatWhen
                 messageBox("Empty Name", "Name can not be empty");
 
             }
-            else if (day < DateTime.Now.Date) //if due date has already ended
-            {
-                messageBox("Due Date Has Already Passed", "Please pick a date in the furture");
-            }
             else
             {
 

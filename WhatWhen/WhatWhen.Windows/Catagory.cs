@@ -32,7 +32,10 @@ namespace WhatWhen
         {            
             //get catagory.txt path
             StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
-            
+
+            //clear file
+            await FileIO.WriteTextAsync(catagoryFile, "");
+
             //start a file stream for writing
             Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
 
@@ -81,7 +84,7 @@ namespace WhatWhen
             if (catagoryFile != null)
             {
                 Stream fileStream = await catagoryFile.OpenStreamForReadAsync();
-                
+
                 //rewrite all and add catagory into catagory.txt          
                 using (StreamReader read = new StreamReader(fileStream))
                 {
@@ -156,14 +159,19 @@ namespace WhatWhen
             //get catagory.txt path
             StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+list.catName+".txt");
 
+            //clear file
+            await FileIO.WriteTextAsync(catFile, "");
+
             //start a file stream for writing
             Stream fileStream = await catFile.OpenStreamForWriteAsync();
 
             List<Activity> toDelete = new List<Activity>();
 
+          
             //rewrite all and add catagory into catagory.txt          
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
+
                 foreach (Activity line in list.activityItems)
                 {   //if the user has deleted the catagory, do not save in file
                     if (line.isDeleted == false && !line.actName.Equals(delActName))
