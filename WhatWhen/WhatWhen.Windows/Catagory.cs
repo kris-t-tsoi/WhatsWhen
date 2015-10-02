@@ -33,8 +33,14 @@ namespace WhatWhen
             //get catagory.txt path
             StorageFile catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
 
+
             //clear file
-            await FileIO.WriteTextAsync(catagoryFile, "");
+         //  await FileIO.WriteTextAsync(catagoryFile, "");
+
+            //wait for it to finish clearing file
+          // await Task.Delay(TimeSpan.FromSeconds(500));
+
+            catagoryFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\catagory.txt");
 
             //start a file stream for writing
             Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
@@ -57,11 +63,13 @@ namespace WhatWhen
                         toDelete.Add(line);
                     }
                 }
-                }
+               // writer.WriteLine("****");
+
+            }
             foreach(Catagory c in toDelete)
             {
                 list.Remove(c);
-            }
+            }           
 
             return true;
         }
@@ -89,16 +97,19 @@ namespace WhatWhen
                 using (StreamReader read = new StreamReader(fileStream))
                 {
                     string line;
-                    while ((line = read.ReadLine()) != null)
+                    while ((line = read.ReadLine()) != null) //|| !(line.Equals("****"))
                     {
                         //read line, and store data in list
-                        Catagory filedata = new Catagory() { catName = line, isDeleted =false };
+                        Catagory filedata = new Catagory() { catName = line, isDeleted = false };
                         mainP.addtoList(line);
                     }
+
+
                 }
             }
             return true;
         }
+            
 
 
         async void deleteFile(String filename)
@@ -125,7 +136,7 @@ namespace WhatWhen
             using (StreamReader read = new StreamReader(fileStream))
             {
                 string line;
-                while ((line = read.ReadLine()) != null)
+                while ((line = read.ReadLine()) != null)// || !(line.Equals("****"))
                 {
                     //split line, and store data in list
                     String[] info = line.Split('\t');
@@ -160,7 +171,9 @@ namespace WhatWhen
             StorageFile catFile = await StorageFile.GetFileFromPathAsync(MainPage.path + @"\"+list.catName+".txt");
 
             //clear file
-            await FileIO.WriteTextAsync(catFile, "");
+        //    await FileIO.WriteTextAsync(catFile, "");
+            //wait for it to finish clearing file
+         //   await Task.Delay(TimeSpan.FromSeconds(300));
 
             //start a file stream for writing
             Stream fileStream = await catFile.OpenStreamForWriteAsync();
@@ -183,6 +196,7 @@ namespace WhatWhen
                         toDelete.Add(line);
                     }
                 }
+                //writer.WriteLine("****");
             }
 
             foreach(Activity act in toDelete)

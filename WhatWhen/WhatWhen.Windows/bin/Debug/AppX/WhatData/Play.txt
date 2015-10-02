@@ -1,4 +1,0 @@
-test	30/10/2015 12:00:00 AM	True
-time	2/10/2015 12:00:00 AM	False
-doing	6/10/2015 12:00:00 AM	False
-sleep	6/10/2015 12:00:00 AM	False

@@ -54,12 +54,12 @@ namespace WhatWhen
             this.InitializeComponent();
             checkFilesExist();
             //goes in here everytime page opens up
-            if (firstTime ==true)
-            {
-                intialCatagories();
-                firstTime = false;
-            }
-            refreshCategoryBar();
+           // if (firstTime ==true)
+          //  {
+          //      intialCatagories();
+         //       firstTime = false;
+        //    }
+        //    refreshCategoryBar();
 
 
           
@@ -88,29 +88,38 @@ namespace WhatWhen
             //catListView.Items.OrderBy(StringComparison);
         }
 
-        
         async void checkFilesExist()
         {
-            //check if Data Folder exists("WhatData"), else create
-            StorageFolder localFolder =
-            await StorageFolder.GetFolderFromPathAsync(root);
-            if (await localFolder.TryGetItemAsync("WhatData") == null)
-            {
-                await localFolder.CreateFolderAsync("WhatData");
-            }
 
+            StorageFolder localFolder = await StorageFolder.GetFolderFromPathAsync(root);
+                        //check if Data Folder exists("WhatData"), else create
+                        if (await localFolder.TryGetItemAsync("WhatData") == null)
+                           {
+               await localFolder.CreateFolderAsync("WhatData");
+                           }
+
+            StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(root + @"\WhatData");
+
+            bool done =  await createCatagoryFile();
+            while (!done) { }
+            intialCatagories();
+
+
+        }
+
+        async Task<bool> createCatagoryFile() {
+            StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(root + @"\WhatData");
+          
             //check if there is a catagory file,else create
-            StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(path);
             if (await storeFolder.TryGetItemAsync("catagory.txt") == null)
             {
                 StorageFile catagoryFile = await storeFolder.CreateFileAsync("catagory.txt");
-                Stream fileStream = await catagoryFile.OpenStreamForWriteAsync();
-
-                //catagory file add in a All
-                Catagory all = new Catagory() { catName = "ALL", isDeleted = false };
-                
             }
+            return true;
+
         }
+
+
 
         private void addCat_Click(object sender, RoutedEventArgs e)
         {
