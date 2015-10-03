@@ -25,35 +25,34 @@ namespace WhatWhen
     public sealed partial class AddPage : Page
     {
         Catagory cat;
-      
+
         public AddPage()
         {
             this.InitializeComponent();
+        }
 
-              }
-
+        //get parameter from navigation
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             cat = e.Parameter as Catagory;
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)   { }
 
-        }
 
-    
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
         }
 
+        //create activity
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             DateTime day = new DateTime();
             day = pageDate.Date.Date;
 
-            if (userInput.Text == "") { //if textbox is empty
+            if (userInput.Text == "")
+            { //if textbox is empty
                 messageBox("Empty Name", "Name can not be empty");
 
             }
@@ -61,11 +60,11 @@ namespace WhatWhen
             {
                 Activity newAct = new Activity() { actName = userInput.Text, actDue = day, actFinished = (bool)completeCheckBox.IsChecked, isDeleted = false };
                 cat.activityItems.Add(newAct);
-                cat.updateIndividaulCatText(cat,"");
+                cat.updateIndividaulCatText(cat, "");
                 this.Frame.GoBack();
 
             }
-                        
+
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
@@ -73,13 +72,14 @@ namespace WhatWhen
             this.Frame.GoBack();
         }
 
+        //pop up message box
         private async void messageBox(String title, String message)
         {
             MessageDialog dialog = new MessageDialog(message, title);
             await dialog.ShowAsync();
         }
 
-       
+
 
     }
 }

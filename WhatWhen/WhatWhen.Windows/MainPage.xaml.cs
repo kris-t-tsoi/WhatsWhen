@@ -25,18 +25,21 @@ namespace WhatWhen
     /// </summary>
     public partial class MainPage : Page
     {
-        //get Root folder
-        public static string root =  Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
+        //get paths of folders
+        public static string root = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
         public static string path = root + @"\WhatData";
+
+        //list of categories
         internal static List<Catagory> catList = new List<Catagory>();
         Catagory useCatMethods = new Catagory();
-        Boolean firstTime = true;
         Catagory currentlyViewing;
+
+        //List of activites in each section on main page
         List<Activity> toDoIndex;
         List<Activity> overIndex;
         List<Activity> doneIndex;
 
-
+        //get instance of page
         static MainPage _instance;
         public static MainPage Current
         {
@@ -45,71 +48,46 @@ namespace WhatWhen
                 return _instance;
             }
         }
-
-
+        
 
         public MainPage()
-        { 
+        {
             _instance = this;
             this.InitializeComponent();
+
+            //check WhatData folder and catagory.txt file exist
+            //Then update view on page
             checkFilesExist();
-            //goes in here everytime page opens up
-           // if (firstTime ==true)
-          //  {
-          //      intialCatagories();
-         //       firstTime = false;
-        //    }
-        //    refreshCategoryBar();
 
-
-          
+           
         }
 
 
-        async void intialCatagories()
-        {
-            catListView.Items.Clear();
-            bool done = false;
-            done = await useCatMethods.getCatagories(_instance);
-
-            //while not
-            while (!done) { }
-            refreshCategoryBar();
-        }
-    
-        void refreshCategoryBar()
-        {
-            //clear list view not working
-            catListView.Items.Clear();
-            foreach (Catagory name in catList)
-            {
-                catListView.Items.Add(name.catName);
-            }
-            //catListView.Items.OrderBy(StringComparison);
-        }
-
+        //check WhatData folder exist
         async void checkFilesExist()
         {
-
             StorageFolder localFolder = await StorageFolder.GetFolderFromPathAsync(root);
-                        //check if Data Folder exists("WhatData"), else create
-                        if (await localFolder.TryGetItemAsync("WhatData") == null)
-                           {
-               await localFolder.CreateFolderAsync("WhatData");
-                           }
+            //check if Data Folder exists("WhatData"), else create
+            if (await localFolder.TryGetItemAsync("WhatData") == null)
+            {
+                await localFolder.CreateFolderAsync("WhatData");
+            }
 
             StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(root + @"\WhatData");
 
-            bool done =  await createCatagoryFile();
+            //check catagory.txt file
+            bool done = await createCatagoryFile();
             while (!done) { }
+
+            //refresh page view
             intialCatagories();
-
-
         }
 
-        async Task<bool> createCatagoryFile() {
+        //check catagory.txt file
+        async Task<bool> createCatagoryFile()
+        {
             StorageFolder storeFolder = await StorageFolder.GetFolderFromPathAsync(root + @"\WhatData");
-          
+
             //check if there is a catagory file,else create
             if (await storeFolder.TryGetItemAsync("catagory.txt") == null)
             {
@@ -119,26 +97,50 @@ namespace WhatWhen
 
         }
 
-
-
-        private void addCat_Click(object sender, RoutedEventArgs e)
+         //get categories from file
+        async void intialCatagories()
         {
-            this.Frame.Navigate(typeof(NewCatagory),catList);
+            catListView.Items.Clear();
+            bool done = false;
+            done = await useCatMethods.getCatagories(_instance);
+
+            while (!done) { }
+
+            //refesh category bar
+            refreshCategoryBar();
         }
 
+        //refesh category bar
+        void refreshCategoryBar()
+        {
+            //clear current items in listview, then add in categories
+            catListView.Items.Clear();
+            foreach (Catagory name in catList)
+            {
+                catListView.Items.Add(name.catName);
+            }
+        }
+
+       //User want to create a new category, goes to newCategory page
+        private void addCat_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(NewCatagory), catList);
+        }
+
+        //deletes currently selected category
         private void deleteCat_Click(object sender, RoutedEventArgs e)
         {
-            if(catListView.SelectedItems.Count == 0)
+            if (catListView.SelectedItems.Count == 0)
             {
                 messageBox("Category Not Selected", "Please Select A Category to Delete");
             }
             else
             {
                 delCat();
-
             }
         }
 
+        //delete category and its unique text file before refreshing category bar
         async void delCat()
         {
             int delIndex = catListView.SelectedIndex;
@@ -149,23 +151,92 @@ namespace WhatWhen
             {
                 catList.Remove(deleteCat);
                 refreshCategoryBar();
-            }            
+            }
+        }
+        
+
+        //add created category into list
+        public void addtoList(String adding)
+        {
+            Catagory add = new Catagory() { catName = adding, isDeleted = false };
+            foreach (Catagory i in catList)
+            {
+                if (i.catName.Equals(add.catName))
+                {
+                    return;
+                }
+            }
+            catList.Add(add);
         }
 
+        //create popup message box
+        private async void messageBox(String title, String message)
+        {
+            MessageDialog dialog = new MessageDialog(message, title);
+            await dialog.ShowAsync();
+        }
+
+        //refresh actitivties
+        private void catListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            int selIndex = catListView.SelectedIndex;
+            Catagory selectCat = catList.ElementAt(selIndex);
+            refreshActivityView(selectCat);
+        }
+
+        //refresh activities of currently selected category
+        void refreshActivityView(Catagory name)
+        {
+            toDoIndex = new List<Activity>();
+            overIndex = new List<Activity>();
+            doneIndex = new List<Activity>();
+
+            doneListView.Items.Clear();
+            doListView.Items.Clear();
+            overListView.Items.Clear();
+
+            foreach (Activity act in name.activityItems)
+            {
+
+                String print = act.actDue.ToString("dd / MM / yyyy") + "\t\t\t" + act.actName;
+
+                if (act.actFinished == true)
+                {
+
+                    doneListView.FontSize = 22;
+                    doneListView.Items.Add(print);
+                    doneIndex.Add(act);
+
+                }
+                else if (act.actDue < DateTime.Now)
+                {
+                    overListView.Items.Add(print);
+                    overIndex.Add(act);
+                }
+                else
+                {
+                    doListView.Items.Add(print);
+                    toDoIndex.Add(act);
+                }
+            }
+        }
+
+
+        //add activity to currently selected category
         private void addAct_Click(object sender, RoutedEventArgs e)
         {
             //currentCat = currently selected catagory
-            if (catListView.SelectedItems.Count==0) {
+            if (catListView.SelectedItems.Count == 0)
+            {
                 messageBox("No Category was Selected", "Please select the category you wish to add a To Do in");
-            } else
+            }
+            else
             {
                 this.Frame.Navigate(typeof(AddPage), catList.ElementAt(catListView.SelectedIndex));
             }
-
-            
         }
 
-
+        //edit currently selected activity
         private void editAct_Click(object sender, RoutedEventArgs e)
         {
             //change catListView
@@ -178,14 +249,14 @@ namespace WhatWhen
                 messageBox("Too Many Items Selected", "Please Only Select One Item You Wish to Edit");
             }
             else
-            {
+            {   //check which  list the activiy is in
                 PassCatAndAct param = new PassCatAndAct();
                 param.cat = currentlyViewing;
 
                 if (doListView.SelectedItems.Count == 1)
                 {
                     param.act = toDoIndex.ElementAt(doListView.SelectedIndex);
-                    this.Frame.Navigate(typeof(EditPage),param );
+                    this.Frame.Navigate(typeof(EditPage), param);
                 }
                 else if (doneListView.SelectedItems.Count == 1)
                 {
@@ -197,11 +268,10 @@ namespace WhatWhen
                     param.act = overIndex.ElementAt(overListView.SelectedIndex);
                     this.Frame.Navigate(typeof(EditPage), param);
                 }
-
-               
             }
         }
 
+        //delete currently selected activity
         private void deleteAct_Click(object sender, RoutedEventArgs e)
         {
             //change catListView
@@ -209,131 +279,69 @@ namespace WhatWhen
             {
                 messageBox("To Do Not Selected", "Please Select Which To Do Activity You Wish to Delete");
             }
-            else if((doListView.SelectedItems.Count + doneListView.SelectedItems.Count+ overListView.SelectedItems.Count) >1)
+            else if ((doListView.SelectedItems.Count + doneListView.SelectedItems.Count + overListView.SelectedItems.Count) > 1)
             {
                 messageBox("Too Many Items Selected", "Please Only Select One Item You Wish to Delete");
             }
             else
-            {
-                // message box ask if really want to delete
-
-                if (doListView.SelectedItems.Count == 1){
+            {   //check which list selected activity is in
+                if (doListView.SelectedItems.Count == 1)
+                {
                     delAct(doListView, toDoIndex);
                 }
-                else if(doneListView.SelectedItems.Count == 1){
+                else if (doneListView.SelectedItems.Count == 1)
+                {
                     delAct(doneListView, doneIndex);
                 }
                 else
                 {
-                    delAct(overListView,overIndex);
-                }
-                
-            }
-            }
-
-        public void addtoList (String adding)
-        {
-            Catagory add = new Catagory() { catName = adding, isDeleted = false };
-            foreach(Catagory i in catList)
-            {
-                if (i.catName.Equals(add.catName))
-                {
-                    return;
+                    delAct(overListView, overIndex);
                 }
             }
-            catList.Add(add);
-            
-            
         }
 
-        private async void messageBox(String title, String message)
-        {
-            MessageDialog dialog = new MessageDialog(message, title);
-            await dialog.ShowAsync();
-        }
-
-        private void catListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            int selIndex = catListView.SelectedIndex;
-            Catagory selectCat = catList.ElementAt(selIndex);
-            refreshActivityView(selectCat);
-
-        }
-
-
-        void refreshActivityView(Catagory name)
-        {
-           toDoIndex = new List<Activity>();
-            overIndex = new List<Activity>();
-            doneIndex = new List<Activity>();
-
-            doneListView.Items.Clear();
-            doListView.Items.Clear();
-            overListView.Items.Clear();
-
-            foreach (Activity act in name.activityItems) {
-
-                String print = act.actDue.ToString("dd / MM / yyyy") + "\t\t\t" + act.actName;
-
-                if (act.actFinished == true ){
-
-                    doneListView.FontSize = 22;
-                    doneListView.Items.Add(print);
-                    doneIndex.Add(act);
-
-                }else if (act.actDue<DateTime.Now)
-                {
-                    overListView.Items.Add(print);
-                    overIndex.Add(act);
-                }
-                else
-                {
-                    doListView.Items.Add(print);
-                    toDoIndex.Add(act);
-                }
-                
-            }
-          
-        }
-
+        //vs wont let me delete without giving a error
         private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-         
-
         }
 
+        //gets activities for the selected category
         private async void catListView_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             int selIndex = catListView.SelectedIndex;
             Catagory selectCat = catList.ElementAt(selIndex);
             currentlyViewing = selectCat;
-           bool done = await selectCat.getActivitiesInCatagory();
+            bool done = await selectCat.getActivitiesInCatagory();
             while (!done) { }
             refreshActivityView(selectCat);
         }
 
-        async void delAct(ListView lv,List<Activity> index)
+        //delete selected activity from file and list
+        async void delAct(ListView lv, List<Activity> index)
         {
             int delIndex = lv.SelectedIndex;
             Activity deleteAct = index.ElementAt(delIndex);
             currentlyViewing.activityItems.Remove(deleteAct);
-            bool finishDelete = await useCatMethods.updateIndividaulCatText(currentlyViewing , deleteAct.actName);
+            bool finishDelete = await useCatMethods.updateIndividaulCatText(currentlyViewing, deleteAct.actName);
             if (finishDelete == true)
-            {                
+            {
                 refreshActivityView(currentlyViewing);
             }
         }
 
+        //refesh and deselects selected activities
         private void doListView_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             refreshActivityView(currentlyViewing);
         }
 
+        //refesh and deselects selected activities
         private void overListView_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             refreshActivityView(currentlyViewing);
         }
 
+        //refesh and deselects selected activities
         private void doneListView_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             refreshActivityView(currentlyViewing);

@@ -25,57 +25,51 @@ namespace WhatWhen
     public sealed partial class EditPage : Page
     {
         PassCatAndAct pam;
+
         public EditPage()
         {
             this.InitializeComponent();
         }
 
+        //get parameter from navigation
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             pam = e.Parameter as PassCatAndAct;
             userInput.Text = pam.act.actName;
-           
+
+            //cant set datepicker or checkbox
         }
 
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) { }       
 
         private void addCategory_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(NewCatagory));
         }
 
+        //update category's unique text file with change
         private async void ok_Click(object sender, RoutedEventArgs e)
         {
-
+            //get date
             DateTime day = new DateTime();
             day = pageDate.Date.Date;
 
             if (userInput.Text == "")
             { //if textbox is empty
                 messageBox("Empty Name", "Name can not be empty");
-
             }
             else
             {
-
                 Activity newAct = new Activity() { actName = userInput.Text, actDue = day, actFinished = (bool)completeCheckBox.IsChecked, isDeleted = false };
                 pam.cat.activityItems.Remove(pam.act);
-               pam.cat.activityItems.Add(newAct);
+                pam.cat.activityItems.Add(newAct);
                 pam.cat.updateIndividaulCatText(pam.cat, "");
                 this.Frame.GoBack();
             }
         }
 
-          private void cancel_Click(object sender, RoutedEventArgs e)
+        private void cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.GoBack();
         }
@@ -85,16 +79,7 @@ namespace WhatWhen
             this.Frame.GoBack();
         }
 
-        private void Time_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-
-        }
-
-        private void Date_DateChanged(object sender, DatePickerValueChangedEventArgs e)
-        {
-
-        }
-
+        //popup message box
         private async void messageBox(String title, String message)
         {
             MessageDialog dialog = new MessageDialog(message, title);

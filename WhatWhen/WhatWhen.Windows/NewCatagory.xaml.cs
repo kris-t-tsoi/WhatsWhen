@@ -30,31 +30,30 @@ namespace WhatWhen
         public NewCatagory()
         {
             this.InitializeComponent();
-            
-            
+
+
         }
 
+        //get input parameter
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             cat = e.Parameter as List<Catagory>;
         }
 
+        //refresh category bar that shows current categories made
         void refreshCategoryBar()
         {
-            //clear list view not working
+            
             CatItems.Items.Clear();
             foreach (Catagory name in cat)
             {
                 CatItems.Items.Add(name.catName);
             }
-            
-        }
-
-
-        private void newCatName_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
         }
+
+
+        private void newCatName_TextChanged(object sender, TextChangedEventArgs e) { }
 
         private void cancelbutton_Click(object sender, RoutedEventArgs e)
         {
@@ -63,6 +62,7 @@ namespace WhatWhen
 
         }
 
+        //check if category is unique and create
         private void okbutton_Click(object sender, RoutedEventArgs e)
         {
             Catagory newCat = new Catagory() { catName = newCatName.Text, isDeleted = false };
@@ -83,6 +83,7 @@ namespace WhatWhen
 
         }
 
+        //check is category is unique
         Boolean checkUnique(Catagory check)
         {
 
@@ -94,7 +95,8 @@ namespace WhatWhen
             return true;
         }
 
-        private async void messageBox (String title, String message)
+        //message pop up box
+        private async void messageBox(String title, String message)
         {
             MessageDialog dialog = new MessageDialog(message, title);
             await dialog.ShowAsync();
@@ -105,12 +107,13 @@ namespace WhatWhen
             this.Frame.GoBack();
         }
 
+        //refresh category bar
         private void CatItems_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             refreshCategoryBar();
         }
     }
 
-    
+
 
 }

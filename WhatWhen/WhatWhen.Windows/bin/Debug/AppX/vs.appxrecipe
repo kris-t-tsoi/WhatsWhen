@@ -28,7 +28,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.exe">
       <PackagePath>WhatWhen.Windows.exe</PackagePath>
-      <Modified>2015-10-02T12:17:27.183</Modified>
+      <Modified>2015-10-03T01:42:27.550</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
@@ -52,7 +52,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\WhatWhen.Windows.xr.xml">
       <PackagePath>WhatWhen.Windows.xr.xml</PackagePath>
-      <Modified>2015-09-30T23:38:30.444</Modified>
+      <Modified>2015-10-03T01:20:17.820</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
@@ -68,7 +68,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-09-30T23:38:30.450</Modified>
+      <Modified>2015-10-03T01:20:18.070</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristy\documents\visual studio 2015\Projects\WhatWhen\WhatWhen\WhatWhen.Windows\bin\Debug\NewCatagory.xbf">
       <PackagePath>NewCatagory.xbf</PackagePath>

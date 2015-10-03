@@ -1,11 +1,11 @@
-﻿<Page x:ConnectionId='1'
+﻿<Page
     x:Class="WhatWhen.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WhatWhen"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"                                     >
+    mc:Ignorable="d" >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -26,16 +26,16 @@
 
             <Grid Grid.Column="1">
                 <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
-                    <Button x:ConnectionId='9' x:Name="addCat" Content="Add Category" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                     />
-                    <Button x:ConnectionId='10' x:Name="deleteCat" Content="Delete Category" Grid.Column="2" Height="57"  Width="150"                        />
+                    <Button x:ConnectionId='8' x:Name="addCat" Content="Add Category" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                     />
+                    <Button x:ConnectionId='9' x:Name="deleteCat" Content="Delete Category" Grid.Column="2" Height="57"  Width="150"                        />
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Column="2">
                 <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
-                    <Button x:ConnectionId='6' x:Name="addAct" Content="Add To Do" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                     />
-                    <Button x:ConnectionId='7' x:Name="editAct" Content="Edit To Do" Grid.Column="2" Height="57"  Width="150"                      />
-                    <Button x:ConnectionId='8' x:Name="deleteAct" Content="Delete To Do" Grid.Column="2" Height="57"  Width="150"                        />
+                    <Button x:ConnectionId='5' x:Name="addAct" Content="Add To Do" Grid.Column="2" Grid.Row="0" Height="57"  Width="150"                     />
+                    <Button x:ConnectionId='6' x:Name="editAct" Content="Edit To Do" Grid.Column="2" Height="57"  Width="150"                      />
+                    <Button x:ConnectionId='7' x:Name="deleteAct" Content="Delete To Do" Grid.Column="2" Height="57"  Width="150"                        />
                 </StackPanel>
             </Grid>
             
@@ -65,7 +65,7 @@
                 </Grid>
 
                 
-                <ListView x:ConnectionId='5'  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="96"                                                                          >
+                <ListView x:ConnectionId='4'  x:Name="catListView" Grid.Column="0" Grid.Row="1" FontSize="96"                                                                          >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="Foreground" Value="Black"/>
@@ -96,7 +96,7 @@
                     <TextBlock Text="What Needs To Be Done" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView x:ConnectionId='4'  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333"                                            >
+                <ListView x:ConnectionId='3'  x:Name="doListView" Grid.Column="0" Grid.Row="1" FontSize="29.333"                                            >
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -128,7 +128,7 @@
                     <TextBlock Text="What's Overdue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" />
                 </Grid>
 
-                <ListView x:ConnectionId='2'  x:Name="overListView" Grid.Column="0" Grid.Row="1" FontSize="29.333"                                             >
+                <ListView x:ConnectionId='1'  x:Name="overListView" Grid.Column="0" Grid.Row="1" FontSize="29.333"                                             >
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -150,7 +150,7 @@
                     <TextBlock HorizontalAlignment="Center" Text="What's Done" VerticalAlignment="Center" FontSize="29.333"/>
                 </Grid>
 
-                <ListView x:ConnectionId='3'  x:Name="doneListView" Grid.Column="0" Grid.Row="3" FontSize="29.333"                                             >
+                <ListView x:ConnectionId='2'  x:Name="doneListView" Grid.Column="0" Grid.Row="3" FontSize="29.333"                                             >
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
